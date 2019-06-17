@@ -29,21 +29,21 @@
         <!--数据库链接地址账号密码-->
         <!--jdbc:mysql://localhost:3306/sqltestdb-->
         <!--jdbc:oracle:thin:@132.98.25.20:1521:fsdb-->
-        <jdbcConnection driverClass="oracle.jdbc.OracleDriver"
-                        connectionURL="jdbc:oracle:thin:@132.98.25.20:1521:fsdb"
-                        userId="bss"
-                        password="GdFsxxH#2o18" >
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://192.168.1.193:3306/behaviors"
+                        userId="root"
+                        password="123456" >
         </jdbcConnection>
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
         <!--生成Model类存放位置-->
-        <javaModelGenerator targetPackage="com.unifs.redenvelopescene.bean" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.unifs.behavioranalysis.bean" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
         <!--生成映射文件存放位置-->
-        <sqlMapGenerator targetPackage="classpath:mappers/" targetProject="src/main/java">
+        <sqlMapGenerator targetPackage="mappers/" targetProject="src/main/resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
         <!--生成Dao类存放位置-->
@@ -52,23 +52,79 @@
                 type="MIXEDMAPPER",生成基于注解的Java Model 和相应的Mapper对象
                 type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口
         -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.unifs.redenvelopescene.dao.second" targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.unifs.behavioranalysis.dao" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
 
         <!--生成对应表及类名-->
-        <table tableName="rpt_intercb_project"
-               domainObjectName="ResDevReport"
+        <table tableName="t_area_info"
+               domainObjectName="AreaInfo"
             	enableCountByExample="false"
                 enableUpdateByExample="false"
                 enableDeleteByExample="false"
                 enableSelectByExample="false"
                 selectByExampleQueryId="false">
             <!-- Mysql 配置 -->
-            <!-- <generatedKey column="id" sqlStatement="Mysql" identity="true" /> -->
+             <generatedKey column="id" sqlStatement="Mysql" identity="true" />
             <!-- Oracle 配置 -->
-            <generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>
+           <!-- <generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>-->
+        </table>
+
+        <!--生成对应表及类名-->
+        <table tableName="t_channel_info"
+               domainObjectName="ChannelInfo"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <!-- Mysql 配置 -->
+            <generatedKey column="id" sqlStatement="Mysql" identity="true" />
+            <!-- Oracle 配置 -->
+            <!-- <generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>-->
+        </table>
+
+        <!--生成对应表及类名-->
+        <table tableName="t_product_info"
+               domainObjectName="ProductInfo"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <!-- Mysql 配置 -->
+            <generatedKey column="id" sqlStatement="Mysql" identity="true" />
+            <!-- Oracle 配置 -->
+            <!-- <generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>-->
+        </table>
+
+        <!--生成对应表及类名-->
+        <table tableName="t_product_order"
+               domainObjectName="ProductOrder"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <!-- Mysql 配置 -->
+            <generatedKey column="id" sqlStatement="Mysql" identity="true" />
+            <!-- Oracle 配置 -->
+            <!-- <generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>-->
+        </table>
+
+        <!--生成对应表及类名-->
+        <table tableName="t_user"
+               domainObjectName="User"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <!-- Mysql 配置 -->
+            <generatedKey column="id" sqlStatement="Mysql" identity="true" />
+            <!-- Oracle 配置 -->
+            <!-- <generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>-->
         </table>
 
     </context>
