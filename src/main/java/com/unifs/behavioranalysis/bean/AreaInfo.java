@@ -1,76 +1,36 @@
 package com.unifs.behavioranalysis.bean;
 
 public class AreaInfo {
-    private Integer indexId;
+    private Integer areaId;
 
-    private String provinceCode;
+    private String areaName;
 
-    private String provinceName;
-
-    private String cityCode;
-
-    private String cityName;
-
-    private String districtCode;
-
-    private String districtName;
+    private String parentId;
 
     private String exStatus;
 
-    public Integer getIndexId() {
-        return indexId;
+    public Integer getAreaId() {
+        return areaId;
     }
 
-    public void setIndexId(Integer indexId) {
-        this.indexId = indexId;
+    public void setAreaId(Integer areaId) {
+        this.areaId = areaId;
     }
 
-    public String getProvinceCode() {
-        return provinceCode;
+    public String getAreaName() {
+        return areaName;
     }
 
-    public void setProvinceCode(String provinceCode) {
-        this.provinceCode = provinceCode == null ? null : provinceCode.trim();
+    public void setAreaName(String areaName) {
+        this.areaName = areaName == null ? null : areaName.trim();
     }
 
-    public String getProvinceName() {
-        return provinceName;
+    public String getParentId() {
+        return parentId;
     }
 
-    public void setProvinceName(String provinceName) {
-        this.provinceName = provinceName == null ? null : provinceName.trim();
-    }
-
-    public String getCityCode() {
-        return cityCode;
-    }
-
-    public void setCityCode(String cityCode) {
-        this.cityCode = cityCode == null ? null : cityCode.trim();
-    }
-
-    public String getCityName() {
-        return cityName;
-    }
-
-    public void setCityName(String cityName) {
-        this.cityName = cityName == null ? null : cityName.trim();
-    }
-
-    public String getDistrictCode() {
-        return districtCode;
-    }
-
-    public void setDistrictCode(String districtCode) {
-        this.districtCode = districtCode == null ? null : districtCode.trim();
-    }
-
-    public String getDistrictName() {
-        return districtName;
-    }
-
-    public void setDistrictName(String districtName) {
-        this.districtName = districtName == null ? null : districtName.trim();
+    public void setParentId(String parentId) {
+        this.parentId = parentId == null ? null : parentId.trim();
     }
 
     public String getExStatus() {
