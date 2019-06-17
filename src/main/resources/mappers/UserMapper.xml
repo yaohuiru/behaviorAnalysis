@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.unifs.behavioranalysis.dao.UserMapper" >
-  <resultMap id="BaseResultMap" type="com.unifs.behavioranalysis.bean.User2" >
+  <resultMap id="BaseResultMap" type="com.unifs.behavioranalysis.bean.User" >
     <id column="user_id" property="userId" jdbcType="CHAR" />
     <result column="name" property="name" jdbcType="CHAR" />
     <result column="user_num" property="userNum" jdbcType="CHAR" />
@@ -10,11 +10,11 @@
     <result column="department_id" property="departmentId" jdbcType="CHAR" />
     <result column="state" property="state" jdbcType="CHAR" />
   </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+  <delete id="deleteByUserNum" parameterType="java.lang.String" >
     delete from t_user
-    where user_id = #{userId,jdbcType=CHAR}
+    where user_num = #{userNum,jdbcType=CHAR}
   </delete>
-  <insert id="insert" parameterType="com.unifs.behavioranalysis.bean.User2" >
+  <insert id="insert" parameterType="com.unifs.behavioranalysis.bean.User" >
     insert into t_user (user_id, name, user_num, 
       user_name, user_email, department_id, 
       state)
@@ -22,20 +22,34 @@
       #{userName,jdbcType=CHAR}, #{userEmail,jdbcType=CHAR}, #{departmentId,jdbcType=CHAR}, 
       #{state,jdbcType=CHAR})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.unifs.behavioranalysis.bean.User2" >
+  <update id="updateByUserNum" parameterType="com.unifs.behavioranalysis.bean.User" >
     update t_user
-    set name = #{name,jdbcType=CHAR},
-      user_num = #{userNum,jdbcType=CHAR},
-      user_name = #{userName,jdbcType=CHAR},
-      user_email = #{userEmail,jdbcType=CHAR},
-      department_id = #{departmentId,jdbcType=CHAR},
-      state = #{state,jdbcType=CHAR}
-    where user_id = #{userId,jdbcType=CHAR}
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=CHAR},
+      </if>
+      <if test="userNum != null">
+        user_num = #{userNum,jdbcType=CHAR},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=CHAR},
+      </if>
+      <if test="userEmail != null">
+        user_email = #{userEmail,jdbcType=CHAR},
+      </if>
+      <if test="departmentId != null">
+        department_id = #{departmentId,jdbcType=CHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=CHAR},
+      </if>
+    </set>
+    where user_num = #{userNum,jdbcType=CHAR}
   </update>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectByUserNum" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select user_id, name, user_num, user_name, user_email, department_id, state
     from t_user
-    where user_id = #{userId,jdbcType=CHAR}
+    where user_num = #{userNum,jdbcType=CHAR}
   </select>
   <select id="selectAll" resultMap="BaseResultMap" >
     select user_id, name, user_num, user_name, user_email, department_id, state

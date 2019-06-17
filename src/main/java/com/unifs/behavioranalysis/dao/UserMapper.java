@@ -1,16 +1,17 @@
 package com.unifs.behavioranalysis.dao;
 
-import com.unifs.behavioranalysis.bean.User2;
+import com.unifs.behavioranalysis.bean.User;
+
 import java.util.List;
 
 public interface UserMapper {
-    int deleteByPrimaryKey(String userId);
+    int deleteByUserNum(String userNum);
 
-    int insert(User2 record);
+    int insert(User record);
 
-    User2 selectByPrimaryKey(String userId);
+    User selectByUserNum(String userNum);
 
-    List<User2> selectAll();
+    List<User> selectAll();
 
-    int updateByPrimaryKey(User2 record);
+    int updateByUserNum(User record);
 }

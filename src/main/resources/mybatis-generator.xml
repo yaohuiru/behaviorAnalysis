@@ -56,8 +56,20 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
+        <table tableName="t_city"
+               domainObjectName="City"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <!-- Mysql 配置 -->
+            <generatedKey column="id" sqlStatement="Mysql" identity="true" />
+            <!-- Oracle 配置 -->
+            <!-- <generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>-->
+        </table>
 
-        <!--生成对应表及类名-->
+        <!--&lt;!&ndash;生成对应表及类名&ndash;&gt;
         <table tableName="t_area_info"
                domainObjectName="AreaInfo"
             	enableCountByExample="false"
@@ -65,13 +77,13 @@
                 enableDeleteByExample="false"
                 enableSelectByExample="false"
                 selectByExampleQueryId="false">
-            <!-- Mysql 配置 -->
+            &lt;!&ndash; Mysql 配置 &ndash;&gt;
              <generatedKey column="id" sqlStatement="Mysql" identity="true" />
-            <!-- Oracle 配置 -->
-           <!-- <generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>-->
-        </table>
+            &lt;!&ndash; Oracle 配置 &ndash;&gt;
+           &lt;!&ndash; <generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>&ndash;&gt;
+        </table>-->
 
-        <!--生成对应表及类名-->
+        <!--&lt;!&ndash;生成对应表及类名&ndash;&gt;
         <table tableName="t_channel_info"
                domainObjectName="ChannelInfo"
                enableCountByExample="false"
@@ -79,13 +91,13 @@
                enableDeleteByExample="false"
                enableSelectByExample="false"
                selectByExampleQueryId="false">
-            <!-- Mysql 配置 -->
+            &lt;!&ndash; Mysql 配置 &ndash;&gt;
             <generatedKey column="id" sqlStatement="Mysql" identity="true" />
-            <!-- Oracle 配置 -->
-            <!-- <generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>-->
+            &lt;!&ndash; Oracle 配置 &ndash;&gt;
+            &lt;!&ndash; <generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>&ndash;&gt;
         </table>
 
-        <!--生成对应表及类名-->
+        &lt;!&ndash;生成对应表及类名&ndash;&gt;
         <table tableName="t_product_info"
                domainObjectName="ProductInfo"
                enableCountByExample="false"
@@ -93,13 +105,13 @@
                enableDeleteByExample="false"
                enableSelectByExample="false"
                selectByExampleQueryId="false">
-            <!-- Mysql 配置 -->
+            &lt;!&ndash; Mysql 配置 &ndash;&gt;
             <generatedKey column="id" sqlStatement="Mysql" identity="true" />
-            <!-- Oracle 配置 -->
-            <!-- <generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>-->
+            &lt;!&ndash; Oracle 配置 &ndash;&gt;
+            &lt;!&ndash; <generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>&ndash;&gt;
         </table>
 
-        <!--生成对应表及类名-->
+        &lt;!&ndash;生成对应表及类名&ndash;&gt;
         <table tableName="t_product_order"
                domainObjectName="ProductOrder"
                enableCountByExample="false"
@@ -107,13 +119,13 @@
                enableDeleteByExample="false"
                enableSelectByExample="false"
                selectByExampleQueryId="false">
-            <!-- Mysql 配置 -->
+            &lt;!&ndash; Mysql 配置 &ndash;&gt;
             <generatedKey column="id" sqlStatement="Mysql" identity="true" />
-            <!-- Oracle 配置 -->
-            <!-- <generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>-->
+            &lt;!&ndash; Oracle 配置 &ndash;&gt;
+            &lt;!&ndash; <generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>&ndash;&gt;
         </table>
 
-        <!--生成对应表及类名-->
+        &lt;!&ndash;生成对应表及类名&ndash;&gt;
         <table tableName="t_user"
                domainObjectName="User"
                enableCountByExample="false"
@@ -121,11 +133,11 @@
                enableDeleteByExample="false"
                enableSelectByExample="false"
                selectByExampleQueryId="false">
-            <!-- Mysql 配置 -->
+            &lt;!&ndash; Mysql 配置 &ndash;&gt;
             <generatedKey column="id" sqlStatement="Mysql" identity="true" />
-            <!-- Oracle 配置 -->
-            <!-- <generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>-->
-        </table>
+            &lt;!&ndash; Oracle 配置 &ndash;&gt;
+            &lt;!&ndash; <generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>&ndash;&gt;
+        </table>-->
 
     </context>
 </generatorConfiguration>

@@ -15,6 +15,18 @@ public class User {
 
     private String state;
 
+    public User() {
+    }
+
+    public User(String name, String userNum, String userName, String userEmail, String departmentId, String state) {
+        this.name = name;
+        this.userNum = userNum;
+        this.userName = userName;
+        this.userEmail = userEmail;
+        this.departmentId = departmentId;
+        this.state = state;
+    }
+
     public String getUserId() {
         return userId;
     }
