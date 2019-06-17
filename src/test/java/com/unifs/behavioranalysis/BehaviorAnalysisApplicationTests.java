@@ -19,9 +19,9 @@ public class BehaviorAnalysisApplicationTests {
     //加密
     @Test
     public void testBsslocal() {
-        String url = encryptor.encrypt("jdbc:oracle:thin:@130.52.160.206:1521:bsslocal");
-        String name = encryptor.encrypt("JF_CCJ");
-        String password = encryptor.encrypt("Abcd1234");
+        String url = encryptor.encrypt("jdbc:mysql://192.168.1.193:3306/behaviors");
+        String name = encryptor.encrypt("root");
+        String password = encryptor.encrypt("123456");
         System.out.println("url:" + url);
         System.out.println("用户名:" + name);
         System.out.println("密码:" + password);

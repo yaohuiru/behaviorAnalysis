@@ -1,6 +1,6 @@
 package com.unifs.behavioranalysis.bean;
 
-public class User {
+public class User2 {
     private String userId;
 
     private String name;
