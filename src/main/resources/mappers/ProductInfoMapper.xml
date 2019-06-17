@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.unifs.behavioranalysis.dao.ProductInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.unifs.behavioranalysis.bean.ProductInfo" >
+    <id column="product_id" property="productId" jdbcType="VARCHAR" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="product_explain" property="productExplain" jdbcType="VARCHAR" />
+    <result column="net_type_code" property="netTypeCode" jdbcType="VARCHAR" />
+    <result column="brand_code" property="brandCode" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="start_date" property="startDate" jdbcType="TIMESTAMP" />
+    <result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+    <result column="update_staff_id" property="updateStaffId" jdbcType="VARCHAR" />
+    <result column="province_code" property="provinceCode" jdbcType="VARCHAR" />
+    <result column="city_code" property="cityCode" jdbcType="VARCHAR" />
+    <result column="district_code" property="districtCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_product_info
+    where product_id = #{productId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.unifs.behavioranalysis.bean.ProductInfo" >
+    insert into t_product_info (product_id, product_name, product_explain, 
+      net_type_code, brand_code, create_date, 
+      start_date, end_date, update_staff_id, 
+      province_code, city_code, district_code
+      )
+    values (#{productId,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{productExplain,jdbcType=VARCHAR}, 
+      #{netTypeCode,jdbcType=VARCHAR}, #{brandCode,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{startDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}, #{updateStaffId,jdbcType=VARCHAR}, 
+      #{provinceCode,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, #{districtCode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.unifs.behavioranalysis.bean.ProductInfo" >
+    update t_product_info
+    set product_name = #{productName,jdbcType=VARCHAR},
+      product_explain = #{productExplain,jdbcType=VARCHAR},
+      net_type_code = #{netTypeCode,jdbcType=VARCHAR},
+      brand_code = #{brandCode,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      start_date = #{startDate,jdbcType=TIMESTAMP},
+      end_date = #{endDate,jdbcType=TIMESTAMP},
+      update_staff_id = #{updateStaffId,jdbcType=VARCHAR},
+      province_code = #{provinceCode,jdbcType=VARCHAR},
+      city_code = #{cityCode,jdbcType=VARCHAR},
+      district_code = #{districtCode,jdbcType=VARCHAR}
+    where product_id = #{productId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select product_id, product_name, product_explain, net_type_code, brand_code, create_date, 
+    start_date, end_date, update_staff_id, province_code, city_code, district_code
+    from t_product_info
+    where product_id = #{productId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select product_id, product_name, product_explain, net_type_code, brand_code, create_date, 
+    start_date, end_date, update_staff_id, province_code, city_code, district_code
+    from t_product_info
+  </select>
+</mapper>
