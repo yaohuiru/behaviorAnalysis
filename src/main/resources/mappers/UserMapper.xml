@@ -35,8 +35,30 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select user_id, name, user_num, user_name, user_email, department_id, state
     from t_user
-    where user_id = #{userId,jdbcType=CHAR}
+    where
+    <if test="userId != null">
+      AND user_id = #{userId,jdbcType=CHAR}
+    </if>
+    <if test="name != null">
+      AND name = #{name,jdbcType=CHAR}
+    </if>
+    <if test="userNum != null">
+      AND user_num = #{userNum,jdbcType=CHAR}
+    </if>
+    <if test="userName != null">
+      AND user_name = #{userName,jdbcType=CHAR}
+    </if>
+    <if test="userEmail != null">
+      AND user_email = #{userEmail,jdbcType=CHAR}
+    </if>
+    <if test="departmentId != null">
+      AND department_id = #{departmentId,jdbcType=CHAR}
+    </if>
+    <if test="state != null">
+      AND state = #{state,jdbcType=CHAR}
+    </if>
   </select>
+
   <select id="selectAll" resultMap="BaseResultMap" >
     select user_id, name, user_num, user_name, user_email, department_id, state
     from t_user
