@@ -1,5 +1,7 @@
 package com.unifs.behavioranalysis.bean;
 
+import java.util.UUID;
+
 public class User {
     private String userId;
 

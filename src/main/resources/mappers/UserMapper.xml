@@ -35,7 +35,7 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select user_id, name, user_num, user_name, user_email, department_id, state
     from t_user
-    where
+    where 1
     <if test="userId != null">
       AND user_id = #{userId,jdbcType=CHAR}
     </if>
