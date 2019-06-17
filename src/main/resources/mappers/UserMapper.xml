@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.unifs.behavioranalysis.dao.UserMapper" >
-  <resultMap id="BaseResultMap" type="com.unifs.behavioranalysis.bean.User2" >
+  <resultMap id="BaseResultMap" type="com.unifs.behavioranalysis.bean.User" >
     <id column="user_id" property="userId" jdbcType="CHAR" />
     <result column="name" property="name" jdbcType="CHAR" />
     <result column="user_num" property="userNum" jdbcType="CHAR" />
@@ -14,7 +14,7 @@
     delete from t_user
     where user_id = #{userId,jdbcType=CHAR}
   </delete>
-  <insert id="insert" parameterType="com.unifs.behavioranalysis.bean.User2" >
+  <insert id="insert" parameterType="com.unifs.behavioranalysis.bean.User" >
     insert into t_user (user_id, name, user_num, 
       user_name, user_email, department_id, 
       state)
@@ -22,7 +22,7 @@
       #{userName,jdbcType=CHAR}, #{userEmail,jdbcType=CHAR}, #{departmentId,jdbcType=CHAR}, 
       #{state,jdbcType=CHAR})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.unifs.behavioranalysis.bean.User2" >
+  <update id="updateByPrimaryKey" parameterType="com.unifs.behavioranalysis.bean.User" >
     update t_user
     set name = #{name,jdbcType=CHAR},
       user_num = #{userNum,jdbcType=CHAR},
