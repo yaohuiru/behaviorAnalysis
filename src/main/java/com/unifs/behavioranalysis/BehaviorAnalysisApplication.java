@@ -25,6 +25,11 @@ public class BehaviorAnalysisApplication extends SpringBootServletInitializer {
      　　*/
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+
+
+
+
+
         return application.sources(BehaviorAnalysisApplication.class);
     }
 

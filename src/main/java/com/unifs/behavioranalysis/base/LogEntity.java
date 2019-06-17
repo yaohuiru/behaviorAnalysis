@@ -15,8 +15,6 @@ import java.util.Date;
  * @date 2019/4/29 11:54
  */
 
-@Data //注解，自动配置getter setter方法
-@ToString //注解，自动重新toString方法
 public class LogEntity {
     private String username;    //来访者姓名
     private String ip;          //来访者IP地址
@@ -28,4 +26,101 @@ public class LogEntity {
     private Date time;          //访问时间
     private String content;     //内容
 
+    public String getUsername()
+    {
+        return username;
+    }
+
+    public void setUsername(String username)
+    {
+        this.username = username;
+    }
+
+    public String getIp()
+    {
+        return ip;
+    }
+
+    public void setIp(String ip)
+    {
+        this.ip = ip;
+    }
+
+    public String getArgs()
+    {
+        return args;
+    }
+
+    public void setArgs(String args)
+    {
+        this.args = args;
+    }
+
+    public String getInterfacePath()
+    {
+        return interfacePath;
+    }
+
+    public void setInterfacePath(String interfacePath)
+    {
+        this.interfacePath = interfacePath;
+    }
+
+    public String getStatus()
+    {
+        return status;
+    }
+
+    public void setStatus(String status)
+    {
+        this.status = status;
+    }
+
+    public String getType()
+    {
+        return type;
+    }
+
+    public void setType(String type)
+    {
+        this.type = type;
+    }
+
+    public String getDetail()
+    {
+        return detail;
+    }
+
+    public void setDetail(String detail)
+    {
+        this.detail = detail;
+    }
+
+    public Date getTime()
+    {
+        return time;
+    }
+
+    public void setTime(Date time)
+    {
+        this.time = time;
+    }
+
+    public String getContent()
+    {
+        return content;
+    }
+
+    public void setContent(String content)
+    {
+        this.content = content;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "LogEntity{" + "username='" + username + '\'' + ", ip='" + ip + '\'' + ", args='" + args + '\'' + ", " +
+                "interfacePath='" + interfacePath + '\'' + ", status='" + status + '\'' + ", type='" + type + '\'' +
+                ", detail='" + detail + '\'' + ", time=" + time + ", content='" + content + '\'' + '}';
+    }
 }

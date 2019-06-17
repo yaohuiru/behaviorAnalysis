@@ -70,4 +70,13 @@ public class User {
     public void setState(String state) {
         this.state = state == null ? null : state.trim();
     }
+
+
+    @Override
+    public String toString()
+    {
+        return "User{" + "userId='" + userId + '\'' + ", name='" + name + '\'' + ", userNum='" + userNum + '\'' + ", " +
+                "userName='" + userName + '\'' + ", userEmail='" + userEmail + '\'' + ", departmentId='" +
+                departmentId + '\'' + ", state='" + state + '\'' + '}';
+    }
 }

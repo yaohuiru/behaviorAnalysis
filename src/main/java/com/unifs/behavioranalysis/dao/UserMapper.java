@@ -1,8 +1,13 @@
 package com.unifs.behavioranalysis.dao;
 
 import com.unifs.behavioranalysis.bean.User2;
+import org.apache.ibatis.annotations.Mapper;
+
 import java.util.List;
 
+
+
+@Mapper
 public interface UserMapper {
     int deleteByPrimaryKey(String userId);
 
