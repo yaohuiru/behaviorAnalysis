@@ -1,45 +1,57 @@
 package com.unifs.behavioranalysis.controller;
 
-
-import com.unifs.behavioranalysis.base.Resp;
 import com.unifs.behavioranalysis.bean.User;
-import com.unifs.behavioranalysis.enums.RespCode;
-import com.unifs.behavioranalysis.service.impl.UserServiceImpl;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import com.unifs.behavioranalysis.service.UserService;
+import org.openxmlformats.schemas.drawingml.x2006.main.CTRegularTextRun;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.xml.crypto.dsig.keyinfo.RetrievalMethod;
+import java.util.List;
+
+/**
+ * @Classname: Usercontroller
+ * @User: 19911
+ * @date: 2019/6/17 15:44
+ * @discription: todo
+ */
 
 @RestController
-@Api(value = "UserController", description = "用户操作控制层")
-@RequestMapping(value = "/user")
-public class UserController
-{
+@RequestMapping("user")
+public class Usercontroller {
     @Autowired
-    private UserServiceImpl userserviceimpl;
-    @PostMapping(value = "/add")
-    public Resp addUser(@RequestBody @ApiParam(value = "添加用户信息的对象",required = true) User user){
-
-        System.out.println(user);
-
-        userserviceimpl.insertUsertotable(user);
-
-
-        Resp resp = new Resp(RespCode.SUCCESS,"哈哈");
-        return resp;
-
-       // return user;
+    private UserService userService;
+//    新增
+    @PostMapping("insert")
+    public String userinsert(@RequestBody User user){
+        userService.userinsert(user);
+        return "新增成功";
+    }
+//    条件查询
+    @PostMapping("select")
+    public List<User> userselect(@RequestBody User user){
+        return userService.userselect(user);
+    }
+//    查询所有数据
+    @PostMapping("selectall")
+    public List<User> userselectall(){
+        return userService.userselectall();
+    }
+//    修改
+    @PostMapping("update")
+    public String userupdate(@RequestBody User user){
+        userService.userupdate(user);
+        return "修改成功";
+    }
+//    删除
+    @PostMapping("delete")
+    public String userdelete(@RequestBody String id){
+        userService.userdelete(id);
+        return "删除成功";
     }
 
-    @GetMapping(value = "/getTable")
-    @ApiOperation(value = "获取新闻列表")
-    public void getTable(){
-
-
-        userserviceimpl.parseList();
-
-//        return newsList.getList();
-    }
 
 }

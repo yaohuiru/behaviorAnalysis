@@ -4,11 +4,11 @@ import com.unifs.behavioranalysis.bean.AreaInfo;
 import java.util.List;
 
 public interface AreaInfoMapper {
-    int deleteByPrimaryKey(Integer areaId);
+    int deleteByPrimaryKey(String areaId);
 
     int insert(AreaInfo record);
 
-    AreaInfo selectByPrimaryKey(Integer areaId);
+    AreaInfo selectByPrimaryKey(String areaId);
 
     List<AreaInfo> selectAll();
 
