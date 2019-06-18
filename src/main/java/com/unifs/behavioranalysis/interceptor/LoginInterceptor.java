@@ -18,6 +18,16 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        return true;
+        Object user = request.getSession().getAttribute("LOGIN_USER");
+        System.out.println("into LoginHandlerInterceptor... " + user);
+        System.out.println(request.getRequestURI());
+        if (user == null) {
+            //未登陆，返回登陆页面
+            request.setAttribute("message","您没有权限访问，请先登陆！");
+            request.getRequestDispatcher("/login").forward(request,response);
+            return false;
+        } else {
+            return true;
+        }
     }
 }

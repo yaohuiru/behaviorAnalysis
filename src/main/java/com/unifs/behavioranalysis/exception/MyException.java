@@ -41,6 +41,4 @@ public class MyException extends RuntimeException {
 		this.appmsg = resp.getMsg();
 		this.appcode = resp.getCode();
 	}
-
-	
 }

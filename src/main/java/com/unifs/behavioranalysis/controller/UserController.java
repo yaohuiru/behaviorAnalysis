@@ -5,9 +5,12 @@ import com.unifs.behavioranalysis.bean.User;
 import com.unifs.behavioranalysis.enums.RespCode;
 import com.unifs.behavioranalysis.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,12 +21,12 @@ import java.util.UUID;
  * @Description: TODO
  */
 @Controller("user")
-@RequestMapping("/user")
+@RequestMapping("/")
 public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping(value = "/add")
+    @PostMapping(value = "/adduser")
     @ResponseBody
     public Resp addUser(@RequestBody User user) {
         //生成主键
@@ -37,7 +40,7 @@ public class UserController {
         }
     }
 
-    @PostMapping(value = "/update")
+    @PostMapping(value = "/updateuser")
     @ResponseBody
     public Resp updateUser(@RequestBody User user) {
         if (user.getUserNum() == null || "".equals(user.getUserNum())) {
@@ -51,14 +54,14 @@ public class UserController {
         }
     }
 
-    @GetMapping("/all")
+    @GetMapping("/allusers")
     @ResponseBody
     public Resp listUser() {
         List<User> users = userService.allUsers();
         return new Resp(RespCode.SUCCESS, users);
     }
 
-    @GetMapping("/get")
+    @GetMapping("/getuser")
     @ResponseBody
     public Resp getUser(@RequestParam("userNum") String userNum) {
         if(userNum == null || "".equals(userNum)) {
@@ -72,7 +75,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/delete")
+    @GetMapping("/deleteuser")
     @ResponseBody
     public Resp deleteUser(@RequestParam(value = "userNum") String userNum) {
         if(userNum == null || "".equals(userNum)) {
@@ -84,6 +87,24 @@ public class UserController {
         }else {
             return new Resp(RespCode.DEFAULT, "删除失败");
         }
+    }
+
+    @GetMapping("login")
+    @ResponseBody
+    public Resp login(@RequestParam(value = "userNum", required = false)String userNum,
+                      HttpServletRequest request) {
+        if(userNum == null || "".equals(userNum)) {
+            return new Resp(RespCode.DEFAULT, "员工编号为必填项");
+        }
+
+        User user = userService.getUser(userNum);
+        if (user == null) {
+            return new Resp(RespCode.DEFAULT, "用户未注册");
+        }
+
+        request.getSession().setAttribute("LOGIN_USER", user);
+
+        return new Resp(RespCode.SUCCESS, "登陆成功");
     }
 
 }
