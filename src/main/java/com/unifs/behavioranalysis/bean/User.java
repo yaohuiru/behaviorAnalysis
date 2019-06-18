@@ -17,6 +17,8 @@ public class User {
 
     private String state;
 
+    private String password;
+
     public String getUserId() {
         return userId;
     }
@@ -71,5 +73,13 @@ public class User {
 
     public void setState(String state) {
         this.state = state == null ? null : state.trim();
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
     }
 }

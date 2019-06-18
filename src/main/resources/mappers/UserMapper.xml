@@ -9,6 +9,7 @@
     <result column="user_email" property="userEmail" jdbcType="CHAR" />
     <result column="department_id" property="departmentId" jdbcType="CHAR" />
     <result column="state" property="state" jdbcType="CHAR" />
+    <result column="password" property="password" jdbcType="CHAR" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from t_user
@@ -17,10 +18,10 @@
   <insert id="insert" parameterType="com.unifs.behavioranalysis.bean.User" >
     insert into t_user (user_id, name, user_num, 
       user_name, user_email, department_id, 
-      state)
+      state, password)
     values (#{userId,jdbcType=CHAR}, #{name,jdbcType=CHAR}, #{userNum,jdbcType=CHAR}, 
       #{userName,jdbcType=CHAR}, #{userEmail,jdbcType=CHAR}, #{departmentId,jdbcType=CHAR}, 
-      #{state,jdbcType=CHAR})
+      #{state,jdbcType=CHAR},#{password,jdbcType=CHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.unifs.behavioranalysis.bean.User" >
     update t_user
@@ -29,11 +30,12 @@
       user_name = #{userName,jdbcType=CHAR},
       user_email = #{userEmail,jdbcType=CHAR},
       department_id = #{departmentId,jdbcType=CHAR},
-      state = #{state,jdbcType=CHAR}
+      state = #{state,jdbcType=CHAR},
+      password = #{password,jdbcType=CHAR}
     where user_id = #{userId,jdbcType=CHAR}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select user_id, name, user_num, user_name, user_email, department_id, state
+    select user_id, name, user_num, user_name, user_email, department_id, state, password
     from t_user
     where 1
     <if test="userId != null">
@@ -57,10 +59,13 @@
     <if test="state != null">
       AND state = #{state,jdbcType=CHAR}
     </if>
+    <if test="password != null">
+      AND password = #{password,jdbcType=CHAR}
+    </if>
   </select>
 
   <select id="selectAll" resultMap="BaseResultMap" >
-    select user_id, name, user_num, user_name, user_email, department_id, state
+    select user_id, name, user_num, user_name, user_email, department_id, state, password
     from t_user
   </select>
 </mapper>
