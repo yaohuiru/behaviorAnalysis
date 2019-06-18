@@ -1,15 +1,15 @@
 package com.unifs.behavioranalysis.controller;
 
+import com.unifs.behavioranalysis.base.Resp;
 import com.unifs.behavioranalysis.bean.User;
+import com.unifs.behavioranalysis.enums.RespCode;
 import com.unifs.behavioranalysis.service.UserService;
 import org.openxmlformats.schemas.drawingml.x2006.main.CTRegularTextRun;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.xml.crypto.dsig.keyinfo.RetrievalMethod;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -21,7 +21,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("user")
-public class Usercontroller {
+public class UserController
+{
     @Autowired
     private UserService userService;
 //    新增
@@ -52,6 +53,16 @@ public class Usercontroller {
         userService.userdelete(id);
         return "删除成功";
     }
+
+
+    @GetMapping("/getArea")
+    public Resp getArea()
+    {
+        List<HashMap<String, Object>> hashMaps = userService.parseList();
+        return new Resp(RespCode.SUCCESS,hashMaps);
+
+    }
+
 
 
 }

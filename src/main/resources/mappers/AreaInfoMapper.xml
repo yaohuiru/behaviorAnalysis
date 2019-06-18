@@ -1,36 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.unifs.behavioranalysis.dao.AreaInfoMapper">
-  <resultMap id="BaseResultMap" type="com.unifs.behavioranalysis.bean.AreaInfo">
-    <id column="area_id" jdbcType="VARCHAR" property="areaId" />
-    <result column="area_name" jdbcType="VARCHAR" property="areaName" />
-    <result column="parent_id" jdbcType="VARCHAR" property="parentId" />
-    <result column="ex_status" jdbcType="VARCHAR" property="exStatus" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <resultMap id="BaseResultMap" type="com.unifs.behavioranalysis.bean.AreaInfo">
+        <id column="area_id" jdbcType="VARCHAR" property="areaId"/>
+        <result column="area_name" jdbcType="VARCHAR" property="areaName"/>
+        <result column="parent_id" jdbcType="VARCHAR" property="parentId"/>
+        <result column="ex_status" jdbcType="VARCHAR" property="exStatus"/>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from t_area_info
     where area_id = #{areaId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.unifs.behavioranalysis.bean.AreaInfo">
+    <insert id="insert" parameterType="com.unifs.behavioranalysis.bean.AreaInfo">
     insert into t_area_info (area_id, area_name, parent_id,
       ex_status)
     values (#{areaId,jdbcType=VARCHAR}, #{areaName,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR},
       #{exStatus,jdbcType=VARCHAR})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.unifs.behavioranalysis.bean.AreaInfo">
+    <update id="updateByPrimaryKey" parameterType="com.unifs.behavioranalysis.bean.AreaInfo">
     update t_area_info
     set area_name = #{areaName,jdbcType=VARCHAR},
       parent_id = #{parentId,jdbcType=VARCHAR},
       ex_status = #{exStatus,jdbcType=VARCHAR}
     where area_id = #{areaId,jdbcType=VARCHAR}
   </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select area_id, area_name, parent_id, ex_status
     from t_area_info
     where area_id = #{areaId,jdbcType=VARCHAR}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap">
+    <select id="selectAll" resultMap="BaseResultMap">
     select area_id, area_name, parent_id, ex_status
     from t_area_info
   </select>
+    <select id="selectByParentId" parameterType="java.lang.String" resultMap="BaseResultMap">
+      select area_id, area_name, parent_id, ex_status
+      from t_area_info
+      where parent_id = #{_parameter,jdbcType=VARCHAR}
+      </select>
+
+    <select id="selectAreaNameByParentId" parameterType="java.lang.String" resultType="java.lang.String">
+      select area_name
+      from t_area_info
+      where parent_id = #{_parameter,jdbcType=VARCHAR}
+      </select>
 </mapper>
