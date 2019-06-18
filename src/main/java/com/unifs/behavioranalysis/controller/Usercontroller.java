@@ -1,15 +1,13 @@
 package com.unifs.behavioranalysis.controller;
 
 import com.unifs.behavioranalysis.bean.User;
-import com.unifs.behavioranalysis.service.UserService;
-import org.openxmlformats.schemas.drawingml.x2006.main.CTRegularTextRun;
+import com.unifs.behavioranalysis.service.impl.UserServicempl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.xml.crypto.dsig.keyinfo.RetrievalMethod;
 import java.util.List;
 
 /**
@@ -23,7 +21,7 @@ import java.util.List;
 @RequestMapping("user")
 public class Usercontroller {
     @Autowired
-    private UserService userService;
+    private UserServicempl userService;
 //    新增
     @PostMapping("insert")
     public String userinsert(@RequestBody User user){
