@@ -53,18 +53,18 @@
    box-sizing:border-box;
 }
 .middle-title {
-	height: 80px;
+	height: 40px;
 	width: 95%;
-	font-size: 35px;
+	font-size: 25px;
 	font-family:"Microsoft YaHei";
 	font-weight: 700;
-	line-height: 80px;
+	line-height: 40px;
 	margin: 5px auto;
 	text-align: center;
 	overflow: hidden;
 }
 .middle-map {
-	height: 400px;
+	height: 440px;
 	width: 95%;
 	margin: 5px auto;
 }

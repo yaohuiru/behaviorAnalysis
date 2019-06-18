@@ -5,7 +5,7 @@ $(function(){
 
 function initPie(){
 	var myChart = echarts.init(document.getElementById('pieGraph'));
-		option = {
+		pieoption = {
 	    title : {
 	        text: '某站点用户访问来源',
 	        x:'center',
@@ -26,7 +26,7 @@ function initPie(){
 	            radius : '50%',
 	            center: ['50%', '55%'],
 	            data:[
-	                {value:335, name:'直接访问'},
+	                {value:33, name:'直接访问'},
 	                {value:310, name:'邮件营销'},
 	                {value:234, name:'联盟广告'},
 	                {value:135, name:'视频广告'},
@@ -43,7 +43,7 @@ function initPie(){
 	    ]
 	}
 	 // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option,true);
+        myChart.setOption(pieoption,true);
         window.addEventListener("resize",function(){
 			myChart.resize();
        });
