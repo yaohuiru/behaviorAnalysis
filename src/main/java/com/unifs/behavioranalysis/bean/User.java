@@ -1,5 +1,7 @@
 package com.unifs.behavioranalysis.bean;
 
+import java.util.UUID;
+
 public class User {
     private String userId;
 
@@ -26,6 +28,8 @@ public class User {
         this.departmentId = departmentId;
         this.state = state;
     }
+
+    private String password;
 
     public String getUserId() {
         return userId;
@@ -81,5 +85,13 @@ public class User {
 
     public void setState(String state) {
         this.state = state == null ? null : state.trim();
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
     }
 }
