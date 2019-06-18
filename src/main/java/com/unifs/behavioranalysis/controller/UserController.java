@@ -8,7 +8,6 @@ import org.openxmlformats.schemas.drawingml.x2006.main.CTRegularTextRun;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.crypto.dsig.keyinfo.RetrievalMethod;
 import java.util.HashMap;
 import java.util.List;
 
@@ -24,7 +23,7 @@ import java.util.List;
 public class UserController
 {
     @Autowired
-    private UserService userService;
+    private UserServicempl userService;
 //    新增
     @PostMapping("insert")
     public String userinsert(@RequestBody User user){

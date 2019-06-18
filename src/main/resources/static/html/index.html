@@ -6,23 +6,44 @@
     <!-- <link rel="stylesheet" href="../webjars/bootstrap/4.3.1/css/bootstrap.css"> -->
     <link rel="stylesheet" type="text/css" href="../css/reset.css">
     <link rel="stylesheet" type="text/css" href="../css/index.css">
+    <link type="text/css" href="../css/font-awesome.css" rel="stylesheet" />
+    <link type="text/css" href="../css/bootstrap.css" rel="stylesheet" />
+    <link type="text/css" href="../css/custom-styles.css" rel="stylesheet" />
 </head>
 <body>
     <!-- <div class="header" >
         
     </div> -->
-    <div class="content">
-        <div class="content-left left">
+    <div class="content clearfix">
+        <div class="content-left left clearfix">
             <div class="left-top border" id="pieGraph">
                 <!-- <img src="../images/icon.png">
                 <span>6月份业务受理情况</span>
                 <div class="pieGraph" id="pieGraph"></div> -->
             </div>
             <div class="left-top border">
-                
+                <div class="title">6月份业务发展统计</div>
+                <div class="countItem">
+                    <span id="countUser">123454</span><br>
+                   <!-- <img src="../images/icon1.png">-->
+                    <span class="spanitem">用户发展量</span>
+                </div>
+                <div class="countItem right">
+                    <span style="color: #e93c07" id="countOrder">5454</span><br>
+                    <span class="spanitem">套餐受理量</span>
+                </div>
+                <div class="countItem">
+                    <span style="color: #37c6c0" id="countAverage">434343</span><br>
+                    <span class="spanitem">日均营业额</span>
+                </div>
+                <div class="countItem right">
+                    <span style="color: #1f6fb5" id="countTotal">23232323</span><br>
+                    <span class="spanitem">总营业额</span>
+                </div>
+
             </div>
         </div>
-        <div class="content-middle left">
+        <div class="content-middle left clearfix">
             <div class="middle-title border">
                 联通营业厅用户数据分析
             </div>
@@ -30,25 +51,97 @@
                 
             </div>
         </div>
-        <div class="content-right right">
+        <div class="content-right right clearfix">
+
             <div class="left-top border">
-                
+
+                <div class="panel panel-default">
+
+                    <div class="panel-heading">
+                        用户发展排名：
+                    </div>
+
+                    <div class="panel-body">
+                        <div style="font-size:12px" class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>排名</th>
+                                    <th>地区名称</th>
+                                    <th>用户数量</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="success">
+                                    <td>1</td>
+                                    <td>忻州</td>
+                                    <td>222</td>
+                                </tr>
+                                <tr class="info">
+                                    <td>2</td>
+                                    <td>忻州</td>
+                                    <td>222</td>
+                                </tr>
+                                <tr class="warning">
+                                    <td>3</td>
+                                    <td>忻州</td>
+                                    <td>2222</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <div class="left-top border">
-                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        营业收入排名：
+                    </div>
+                    <div class="panel-body">
+                        <div style="font-size:12px" class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>排名</th>
+                                    <th>地区名称</th>
+                                    <th>用户数量</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>忻州</td>
+                                    <td>123456</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>忻州</td>
+                                    <td>123456</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>忻州</td>
+                                    <td>123456</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="content-bottom">
-            <div class="bottom-left left border">
+        <div class="content-bottom clearfix">
+            <div class="bottom-left left border" id="comparedInfo">
                 
             </div>
-            <div class="bottom-left item right border">
+            <div class="bottom-left item right border" id="tendencyInfo">
                 
             </div>
         </div>
     </div>
     <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="../js/plugins/echarts/echarts.min.js"></script>
     <script type="text/javascript" src="../js/plugins/map/citymap.js"></script>
     <script type="text/javascript" src="../js/plugins/map/app.js"></script>

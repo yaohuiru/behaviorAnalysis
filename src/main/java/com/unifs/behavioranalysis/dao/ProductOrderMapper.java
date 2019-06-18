@@ -13,4 +13,6 @@ public interface ProductOrderMapper {
     List<ProductOrder> selectAll();
 
     int updateByPrimaryKey(ProductOrder record);
+
+    int selectUserConuntByMonth(String orderDate);
 }
