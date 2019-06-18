@@ -2,7 +2,7 @@ package com.unifs.behavioranalysis.controller;
 
 import com.unifs.behavioranalysis.annotation.ControlLog;
 import com.unifs.behavioranalysis.base.Resp;
-import com.unifs.behavioranalysis.bean.User2;
+import com.unifs.behavioranalysis.bean.User;
 import com.unifs.behavioranalysis.enums.RespCode;
 import com.unifs.behavioranalysis.service.TestService;
 import io.swagger.annotations.Api;
@@ -28,7 +28,7 @@ public class TestController {
     @ControlLog(operateType = "test", context = "AOP日志功能测试")
     @RequestMapping(value = "/test" ,method = RequestMethod.POST)
     @ApiOperation(value = "根据用户编号获取用户姓名", notes = "test: 仅1和2有正确返回")
-    public Resp test(@Validated @RequestBody User2 user) {
+    public Resp test(@Validated @RequestBody User user) {
         Resp resp = new Resp(RespCode.SUCCESS);
         //testService.test01();
         return resp;
