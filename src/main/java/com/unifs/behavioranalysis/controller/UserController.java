@@ -5,12 +5,11 @@ import com.unifs.behavioranalysis.bean.User;
 import com.unifs.behavioranalysis.enums.RespCode;
 import com.unifs.behavioranalysis.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.UUID;
 
@@ -29,6 +28,9 @@ public class UserController {
     @PostMapping(value = "/adduser")
     @ResponseBody
     public Resp addUser(@RequestBody User user) {
+        if(StringUtils.isEmpty(user.getUserNum())||StringUtils.isEmpty(user.getPassword())) {
+            return new Resp(RespCode.DEFAULT, "员工编号和密码为必填项");
+        }
         //生成主键
         String primaryKey = UUID.randomUUID().toString().replace("-", "");
         user.setUserId(primaryKey);
@@ -65,7 +67,7 @@ public class UserController {
     @ResponseBody
     public Resp getUser(@RequestParam("userNum") String userNum) {
         if(userNum == null || "".equals(userNum)) {
-            return new Resp(RespCode.DEFAULT, "员工编号为必填项");
+            return new Resp(RespCode.DEFAULT, "员工编号为 必填项");
         }
         User user = userService.getUser(userNum);
         if (user == null) {
@@ -89,17 +91,22 @@ public class UserController {
         }
     }
 
-    @GetMapping("login")
+    @PostMapping(value = "login")
     @ResponseBody
-    public Resp login(@RequestParam(value = "userNum", required = false)String userNum,
+    public Resp login(@RequestParam(value = "userNum") String userNum,
+                      @RequestParam(value = "password") String password,
                       HttpServletRequest request) {
-        if(userNum == null || "".equals(userNum)) {
-            return new Resp(RespCode.DEFAULT, "员工编号为必填项");
+        if(StringUtils.isEmpty(userNum) || StringUtils.isEmpty(password)) {
+            return new Resp(RespCode.DEFAULT, "请输入员工编号和密码");
         }
 
         User user = userService.getUser(userNum);
         if (user == null) {
             return new Resp(RespCode.DEFAULT, "用户未注册");
+        }
+
+        if(!password.equals(user.getPassword())) {
+            return new Resp(RespCode.DEFAULT, "密码错误");
         }
 
         request.getSession().setAttribute("LOGIN_USER", user);

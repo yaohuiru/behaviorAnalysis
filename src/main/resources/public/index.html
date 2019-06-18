@@ -1,14 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/behavioranalysis/webjars/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+
+    <title>登陆</title>
 </head>
 <body>
-    <form action="/behavioranalysis/login" method="get">
-        用户登陆：<input type="text" name="userNum"/>
-        <input type="submit" value="登陆">
-    </form>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/behavioranalysis/webjars/jquery/3.0.0/jquery.js" crossorigin="anonymous"></script>
+    <script src="/behavioranalysis/webjars/popper.js/1.14.3/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="/behavioranalysis/webjars/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
 
+    <header class="nav navbar-dark navbar-expand flex-column flex-md-row bg-primary">
+        <div class="navbar-nav">
+            <h1 class="text-white-50">首页</h1>
+        </div>
+    </header>
+    <div class="container">
+        <div class="row">
+            <form class="border-primary">
+                <fieldset>
+                    <legend>用户登录</legend>
+                    <p>
+                        <label for="input">员工编号</label>
+                        <input type="text" id="input" placeholder="员工编号">
+                    </p>
+                    <p>
+                        <label for="password">密码</label>
+                        <input type="password" id="password" placeholder="密码">
+                    </p>
+                    <p>
+                        <button type="submit" class="btn btn-primary">登陆</button>
+                    </p>
+                </fieldset>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
