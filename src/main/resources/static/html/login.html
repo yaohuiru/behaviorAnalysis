@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户登录</title>
+    <!-- <link rel="stylesheet" href="../webjars/bootstrap/4.3.1/css/bootstrap.css"> -->
+    <link rel="stylesheet" type="text/css" href="../css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
+    <link type="text/css" href="../css/font-awesome.css" rel="stylesheet" />
+    <link type="text/css" href="../css/bootstrap.css" rel="stylesheet" />
+    <link type="text/css" href="../css/custom-styles.css" rel="stylesheet" />
+	<script>
+		function login(){
+			window.open("index.html", "_blank");
+		}
+	</script>
+	
+		
+</head>
+	<body>
+		<!-- 登录表单 -->
+      <form style="margin-left:500px;margin-top:200px;"action="/behavioranalysis/user/select"method="post">
+          <div class="form-group">
+              <label for="name" stype="display:inline;">账户：</label>
+              <input type="text" class="form-control" name="name"id="name" style="display:inline;width:200px;"autocomplete="off" />
+          </div>
+         <div class="form-group">
+              <label for="password" style="display:inline;">密码：</label>
+             <input type="text" class="form-control" name="password"id="password" style="display:inline;width:200px;"autocomplete="off" />
+         </div>
+         <button type="submit" class="btn btn-primary" >登录</button>
+        
+     </form>
+		
+		
+	</body>
+</html>

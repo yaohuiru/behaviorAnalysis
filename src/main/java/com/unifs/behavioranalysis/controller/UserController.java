@@ -31,7 +31,7 @@ public class UserController
     }
 //    条件查询
     @PostMapping("select")
-    public List<User> userselect(@RequestBody User user){
+    public List<User> userselect( User user){
         return userService.userselect(user);
     }
 //    查询所有数据
