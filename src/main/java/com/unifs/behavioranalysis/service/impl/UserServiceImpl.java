@@ -1,6 +1,5 @@
 package com.unifs.behavioranalysis.service.impl;
 
-import com.alibaba.fastjson.JSON;
 import com.unifs.behavioranalysis.bean.AreaInfo;
 import com.unifs.behavioranalysis.bean.User;
 import com.unifs.behavioranalysis.dao.AreaInfoMapper;

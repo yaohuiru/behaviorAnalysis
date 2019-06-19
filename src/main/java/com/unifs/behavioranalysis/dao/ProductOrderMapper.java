@@ -1,9 +1,9 @@
 package com.unifs.behavioranalysis.dao;
 
 import com.unifs.behavioranalysis.bean.ProductOrder;
+import com.unifs.behavioranalysis.bean.view.DevCountView;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
-
 
 import java.util.List;
 @Component
@@ -18,5 +18,5 @@ public interface ProductOrderMapper {
 
     int updateByPrimaryKey(ProductOrder record);
 
-    int selectUserCountByMonth(@Param("areaName") String areaName, @Param("orderDate") String orderDate);
+    DevCountView selectUserCountByMonth(@Param("areaName") String areaName , @Param("orderDate") String orderDate);
 }

@@ -158,14 +158,14 @@ function renderMap(map,data){
 			    'china':'中国'
 			},
             label: {
-	            normal:{
+	            /*normal:{
 					show:true,
 					//区域名称字体设置
 					textStyle:{
 						color:'#999',
 						fontSize:13
-					}  
-	            },
+					}
+	            },*/
 	            emphasis: {
 	                show: true,
 	                textStyle:{

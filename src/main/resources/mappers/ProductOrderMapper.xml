@@ -39,9 +39,12 @@
     select user_no, user_id, product_mode, product_id, staff_id, channel_id
     from t_product_order
   </select>
-  <select id="selectUserCountByMonth" resultType="Integer" >
+
+  <select id="selectUserCountByMonth" resultType="com.unifs.behavioranalysis.bean.view.DevCountView" >
     SELECT
-        COUNT(*)
+        COUNT(0) devAmount,
+        sum(order_amount) totalTurnover,
+        sum(order_amount)/count(0) dayTurnover
         FROM
          t_product_order
         WHERE

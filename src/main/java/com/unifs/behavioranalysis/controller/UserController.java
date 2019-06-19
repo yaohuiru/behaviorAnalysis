@@ -4,7 +4,6 @@ import com.unifs.behavioranalysis.base.Resp;
 import com.unifs.behavioranalysis.bean.User;
 import com.unifs.behavioranalysis.enums.RespCode;
 import com.unifs.behavioranalysis.service.UserService;
-import org.openxmlformats.schemas.drawingml.x2006.main.CTRegularTextRun;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +22,7 @@ import java.util.List;
 public class UserController
 {
     @Autowired
-    private UserServicempl userService;
+    private UserService userService;
 //    新增
     @PostMapping("insert")
     public String userinsert(@RequestBody User user){
