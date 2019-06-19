@@ -44,7 +44,7 @@
     SELECT
         COUNT(0) devAmount,
         sum(order_amount) totalTurnover,
-        sum(order_amount)/count(0) dayTurnover
+        sum(order_amount)/30 dayTurnover
         FROM
          t_product_order
         WHERE
