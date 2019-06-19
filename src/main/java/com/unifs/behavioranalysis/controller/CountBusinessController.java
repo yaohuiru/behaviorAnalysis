@@ -13,7 +13,7 @@ public class CountBusinessController {
     CountBusinessService countBusinessService;
     @RequestMapping(value = "/countUserDevelop" ,method = RequestMethod.POST)
     public int countUserDevelop(String orderDate){
-        int count=  countBusinessService.countUserDevelop("201906");
+        int count=  countBusinessService.countUserDevelop("201906","北京市");
         System.out.println(count);
         return count;
     }
