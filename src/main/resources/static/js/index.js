@@ -6,7 +6,7 @@ $(function(){
  	initcomparedInfo();
 })
 
-function initCountBusiness (){
+function initCountBusiness (codeName,orderDate){
     $.ajax({
         type : 'post', //测试get，正式post
         cache : false,
@@ -15,8 +15,8 @@ function initCountBusiness (){
         async:false,
         url:getRootPath_web()+"/countUserDevelop",
         data: JSON.stringify({
-            codeName: "北京市",
-            orderDate:"201906"
+            codeName: codeName,
+            orderDate:orderDate
         }),
         error : function(){
             console.error("出现异常");
