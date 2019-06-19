@@ -42,7 +42,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3,
     ol { margin-left:2em; }
     /* == clearfix == */
     .clearfix:after {
-    content: “.”;
+    content: "";
     display: block;
     height: 0;
     clear: both;

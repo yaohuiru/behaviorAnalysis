@@ -39,4 +39,8 @@
     select user_no, user_id, product_mode, product_id, staff_id, channel_id
     from t_product_order
   </select>
+  <select id="selectUserConuntByMonth" resultType="Integer" parameterType="java.lang.String" >
+    SELECT COUNT(*) FROM t_product_order
+    WHERE order_date like CONCAT('%',#{_parameter,jdbcType=VARCHAR},'%')
+  </select>
 </mapper>

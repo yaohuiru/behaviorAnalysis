@@ -13,4 +13,8 @@ public interface AreaInfoMapper {
     List<AreaInfo> selectAll();
 
     int updateByPrimaryKey(AreaInfo record);
+
+    List<AreaInfo> selectByParentId(String parentId);
+
+    List<String> selectAreaNameByParentId(String parentId);
 }
