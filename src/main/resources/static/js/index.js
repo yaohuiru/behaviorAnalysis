@@ -1,9 +1,38 @@
 $(function(){
  	initPie();
  	initMap();
+ 	initCountBusiness();
  	inittendencyInfo();
  	initcomparedInfo();
 })
+
+function initCountBusiness (codeName,orderDate){
+    $.ajax({
+        type : 'post', //测试get，正式post
+        cache : false,
+        dataType: 'json',
+        contentType: 'application/json;charset=UTF-8',
+        async:false,
+        url:getRootPath_web()+"/countUserDevelop",
+        data: JSON.stringify({
+            codeName: codeName,
+            orderDate:orderDate
+        }),
+        error : function(){
+            console.error("出现异常");
+        },
+        success : function(data){
+            console.log(data);
+            //console.log(data.devAmount)
+            $("#countUser").html(data.devAmount);
+            $("#countOrder").html(data.acceptAmount);
+            $("#countAverage").html((data.dayTurnover).toFixed(2));
+            $("#countTotal").html(data.totalTurnover);
+        }
+    });
+
+}
+
 
 function initPie(){
 	var myChart = echarts.init(document.getElementById('pieGraph'));
@@ -144,4 +173,17 @@ function inittendencyInfo() {
     window.addEventListener("resize",function(){
         myChart.resize();
     });
+}
+
+function getRootPath_web() {
+    //获取当前网址，如： http://localhost:8083/uimcardprj/share/meun.jsp
+    var curWwwPath = window.document.location.href;
+    //获取主机地址之后的目录，如： uimcardprj/share/meun.jsp
+    var pathName = window.document.location.pathname;
+    var pos = curWwwPath.indexOf(pathName);
+    //获取主机地址，如： http://localhost:8083
+    var localhostPaht = curWwwPath.substring(0, pos);
+    //获取带"/"的项目名，如：/uimcardprj
+    var projectName = pathName.substring(0, pathName.substr(1).indexOf('/') + 1);
+    return (localhostPaht + projectName);
 }

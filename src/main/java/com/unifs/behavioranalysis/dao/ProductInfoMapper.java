@@ -1,8 +1,10 @@
 package com.unifs.behavioranalysis.dao;
 
 import com.unifs.behavioranalysis.bean.ProductInfo;
-import java.util.List;
+import org.springframework.stereotype.Component;
 
+import java.util.List;
+@Component
 public interface ProductInfoMapper {
     int deleteByPrimaryKey(String productId);
 
