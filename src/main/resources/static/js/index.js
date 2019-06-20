@@ -86,52 +86,104 @@ function initPie(){
 }
 
 function initcomparedInfo() {
-    var myChart = echarts.init(document.getElementById('comparedInfo'));
-    comparedOption = {
-        title : {
-            text: '营业额同比交易量',
-            x:'center',
-            textStyle: {
-                fontSize: 16,
-                fontWeight: 600,
-                color: '#ff6600'
-            },
+    var amount=[];
+    $.ajax({
+        type : 'get', //测试get，正式post
+        cache : false,
+        dataType: 'json',
+        contentType: 'application/json;charset=UTF-8',
+        async:false,
+        url:getRootPath_web()+"/countOrderAmount",
+        error : function(){
+            console.error("出现异常");
         },
-        legend: {
-            bottom:'0',
-		},
-        tooltip: {
+        success : function(data){
+            amount = data;
+            console.log(data);
+            //console.log(data.devAmount)
+        }
+    });
 
-		},
-        grid:{
-            x:40,
-            y:60,
-            x2:40,
-            y2:50,
-            borderWidth:1
-        },
-        dataset: {
-            dimensions: ['product', '2015', '2016', '2017'],
-            source: [
-                {product: 'Matcha Latte', '2015': 43.3, '2016': 85.8, '2017': 93.7},
-                {product: 'Milk Tea', '2015': 83.1, '2016': 73.4, '2017': 55.1},
-                {product: 'Cheese Cocoa', '2015': 86.4, '2016': 65.2, '2017': 82.5},
-                {product: 'Walnut Brownie', '2015': 72.4, '2016': 53.9, '2017': 39.1}
+    var myChart = echarts.init(document.getElementById('comparedInfo'));
+    var title = ['product', amount[1].month+'月', amount[1].last_month+'月'];
+    var content=[];
+    for (var i = 0; i < amount.length; i++) {
+        var piece = [amount[i].product_name, amount[i].sum, amount[i].last_sum];
+        content.push(piece);
+    }
+    myChart.setOption(
+        {
+            title : {
+                text: '营业额同比交易量',
+                x:'center',
+                textStyle: {
+                    fontSize: 16,
+                    fontWeight: 600,
+                    color: '#ff6600'
+                },
+            },
+            color:["#91C7AE", "#61A0A8"],
+            legend: {
+                top:'20',
+            },
+            tooltip: {
+
+            },
+            grid:{
+                x:60,
+                y:60,
+                x2:60,
+                y2:50,
+                borderWidth:1
+            },
+            dataZoom: [
+                {   // 这个dataZoom组件，默认控制x轴。
+                    type: 'slider', // 这个 dataZoom 组件是 slider 型 dataZoom 组件
+                    height:10,
+                    bottom: 20,
+                    start: 0,      // 左边在 0% 的位置。
+                    end: 5         // 右边在 10% 的位置。
+                },
+                {
+                    type: 'inside',
+                    start: 0,      // 左边在 0% 的位置。
+                    end: 5         // 右边在 10% 的位置。
+                }
+            ],
+            dataset: {
+
+                dimensions: title,
+                source: content
+            },
+            xAxis: {type: 'category'},
+            yAxis: {},
+            // Declare several bar series, each will be mapped
+            // to a column of dataset.source by default.
+            series: [
+                {type: 'bar'},
+                {type: 'bar'}
             ]
-        },
-        xAxis: {type: 'category'},
-        yAxis: {},
-        // Declare several bar series, each will be mapped
-        // to a column of dataset.source by default.
-        series: [
-            {type: 'bar'},
-            {type: 'bar'},
-            {type: 'bar'}
-        ]
-    };
-    myChart.setOption(comparedOption,true);
+        }
+    );
+
     window.addEventListener("resize",function(){
         myChart.resize();
+    });
+    myChart.on('click',function () {
+        myChart.setOption({
+            dataZoom: [
+                {   // 这个dataZoom组件，默认控制x轴。
+                    type: 'slider', // 这个 dataZoom 组件是 slider 型 dataZoom 组件
+                    start: 0,      // 左边在 0% 的位置。
+                    end: 1     // 右边在 1% 的位置。
+                },
+                {
+                    type: 'inside',
+                    start: 0,      // 左边在 0% 的位置。
+                    end: 1        // 右边在 10% 的位置。
+                }
+            ]
+        });
     });
 }
 

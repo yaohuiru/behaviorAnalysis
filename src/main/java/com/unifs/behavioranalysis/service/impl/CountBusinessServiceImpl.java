@@ -1,11 +1,14 @@
 package com.unifs.behavioranalysis.service.impl;
 
 import com.unifs.behavioranalysis.bean.view.DevCountView;
+import com.unifs.behavioranalysis.bean.view.OrderAmountView;
 import com.unifs.behavioranalysis.dao.ProductInfoMapper;
 import com.unifs.behavioranalysis.dao.ProductOrderMapper;
 import com.unifs.behavioranalysis.service.CountBusinessService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CountBusinessServiceImpl implements CountBusinessService {
@@ -23,4 +26,11 @@ public class CountBusinessServiceImpl implements CountBusinessService {
             return productOrderMapper.selectUserCountByMonth(code,orderDate);
         }
     }
+
+    @Override
+    public List<OrderAmountView> countOrderAmount() {
+        return productOrderMapper.selectOrderAmount();
+    }
+
+
 }
