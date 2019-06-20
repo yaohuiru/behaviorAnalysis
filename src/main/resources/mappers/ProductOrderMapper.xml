@@ -73,4 +73,19 @@
         from t_product_order
          where order_date like CONCAT('%',#{orderDate,jdbcType=VARCHAR},'%')
   </select>
+
+    <select id="selectOrderAmount" resultType="com.unifs.behavioranalysis.bean.view.OrderAmountView">
+        select i.product_name, o.month, o.sum, o.last_month, o.last_sum
+        from t_product_info i,
+             (
+                 select a.product_id, month(str_to_date(order_date, '%Y%m%d')) as month,sum(convert(order_amount, decimal(10,2))) as sum, last_month, last_sum from t_product_order a,
+                                                                                                                                                                    (
+                                                                                                                                                                        select month(str_to_date(order_date, '%Y%m%d')) as last_month, product_id, sum(convert(order_amount, decimal(10,2))) as last_sum from t_product_order
+                                                                                                                                                                        where month(str_to_date(order_date, '%Y%m%d')) = month(date_sub(now(), interval 1 month ))
+                                                                                                                                                                        group by product_id
+                                                                                                                                                                    ) b
+                 where month(str_to_date(order_date, '%Y%m%d'))=month(now()) and a.product_id = b.product_id
+                 group by product_id
+             ) o where i.product_id = o.product_id
+    </select>
 </mapper>
