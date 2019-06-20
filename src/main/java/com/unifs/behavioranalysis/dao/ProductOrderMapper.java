@@ -23,5 +23,7 @@ public interface ProductOrderMapper {
 
     DevCountView selectUserCountByMonth(@Param("areaName") String areaName , @Param("orderDate") String orderDate);
 
+    DevCountView selectAllCount(@Param("orderDate") String orderDate);
+
     List<OrderAmountView> selectOrderAmount();
 }
