@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-//保护修改
+
 
 @Component
 public interface UserMapper {
