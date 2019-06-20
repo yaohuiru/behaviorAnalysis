@@ -7,6 +7,7 @@ import com.unifs.behavioranalysis.dao.UserMapper;
 import com.unifs.behavioranalysis.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,6 +23,23 @@ public class UserServiceImpl implements UserService
     private UserMapper userMapper;
     @Autowired
     private AreaInfoMapper areaInfoMapper;
+
+//  查询后转换地区字符
+
+    @Override
+    public List<User> selectchange(User user){
+        List<User> ans = userMapper.selectByPrimaryKey(user);
+        int i =0;
+        AreaInfo tmp;
+        while(i<ans.size()){
+            tmp = areaInfoMapper.selectByPrimaryKey(ans.get(i).getDepartmentId());
+            ans.get(i).setDepartmentId(tmp.getAreaName());
+            i++;
+        }
+        return ans;
+    }
+
+
 
 
     @Override

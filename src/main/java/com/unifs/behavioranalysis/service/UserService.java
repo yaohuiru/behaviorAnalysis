@@ -14,17 +14,20 @@ import java.util.List;
  */
 public interface UserService {
 
+//    查询后转换地区名称
+    List<User> selectchange(User user);
+
     //    新增用户：userinsert
-    public void userinsert(User user);
+    void userinsert(User user);
 
     //    删除用户：userdelete
-    public void  userdelete(String id);
+    void  userdelete(String id);
     //    更新用户：userupdate
-    public void userupdate(User user);
+    void userupdate(User user);
     //    查询所有：userselectall
-    public List<User> userselectall();
+    List<User> userselectall();
     //    查询用户：userselect
-    public List<User> userselect(User user);
+    List<User> userselect(User user);
 
- 	public List<HashMap<String, Object>> parseList();
+ 	List<HashMap<String, Object>> parseList();
 }

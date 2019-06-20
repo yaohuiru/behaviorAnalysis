@@ -21,32 +21,37 @@ import java.util.List;
  * @discription: todo
  */
 
-@Controller("fff")
+@RestController
 @RequestMapping("user")
 public class UserController
 {
     @Autowired
     private UserService userService;
 
-//    @RequestMapping(value = "/index")
-//    public String toIndex(){
-//        System.out.println("xxxxxx");
-//        return "/html/index";
-//    }
 //    登录
     @PostMapping("login")
     public String login(User user, HttpServletRequest request){
        List<User> ans;
-       ans = userService.userselect(user);
-       request.getSession().setAttribute("User",ans.get(0));
-       switch (ans.get(0).getDepartmentId()) {
-           case "0":
-               return "html/admin";
-           default:
-               return "html/index";
+       ans = userService.selectchange(user);
+       if(ans.size()!=0){
+           switch (ans.get(0).getDepartmentId()) {
+               case "admin":
+                   return "html/admin";
+               default: {
+                   request.getSession().setAttribute("User", ans.get(0));
+                   return "html/index";
+               }
+           }
        }
+       else return "登录错误";
+
     }
 
+//    查询后转换地区字符
+    @PostMapping("selectu")
+    public List<User> selectu(@RequestBody User user){
+        return userService.selectchange(user);
+    }
 
 //    新增
     @PostMapping("insert")
