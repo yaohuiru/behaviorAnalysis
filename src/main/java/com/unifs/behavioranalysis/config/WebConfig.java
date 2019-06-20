@@ -21,7 +21,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     LoginInterceptor loginInterceptor;
     private Logger log=LoggerFactory.getLogger(WebConfig.class);
     //不拦截资源路径
-    final String[] notLoginInterceptPaths={"/error/*","/css/**","/js/**","/index.html","/login", "/webjars/**"};
+    final String[] notLoginInterceptPaths={"/**"};
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
