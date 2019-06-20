@@ -48,12 +48,14 @@ var provinces = {
 var special = ["北京", "天津", "上海", "重庆", "香港", "澳门"];
 var mapdata = [];
 //用户所属区域信息
-var userArea = '山西省';
+var userArea = 'china';
 
 //绘制全国地图
 function initMap() {
     var d = [];
-
+    //获取权限
+    userArea=document.getElementById("userArea").value;
+    console.log(userArea);
     //不是顶级菜单，判断是省级还是市级
     var name = userArea.substr(0, userArea.length - 1);
     var path = "";
