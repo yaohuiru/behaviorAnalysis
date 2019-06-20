@@ -17,12 +17,10 @@ public class CountBusinessServiceImpl implements CountBusinessService {
 
     @Override
     public DevCountView countUserDevelop(String orderDate, String code) {
-       /* List<ProductInfo> list = productInfoMapper.selectByProvinceCode(code);
-        if (!list.isEmpty()){
-            System.out.println(list.size());
-        }*/
-
-        return productOrderMapper.selectUserCountByMonth(code,orderDate);
-
+        if (code.equals("all")){
+            return productOrderMapper.selectAllCount(orderDate);
+        }else {
+            return productOrderMapper.selectUserCountByMonth(code,orderDate);
+        }
     }
 }

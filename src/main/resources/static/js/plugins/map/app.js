@@ -1,4 +1,5 @@
 var orderDate = "201906";
+
 //地图容器
 var chart = echarts.init(document.getElementById('map'));
 //34个省、市、自治区的名字拼音映射数组
@@ -67,7 +68,9 @@ function initMap(){
 //地图点击事件
 chart.on('click', function (params) {
 	console.log( params );
-    initCountBusiness (params.name,orderDate);
+	/*$("#businessTitle").before(params.name);*/
+    areaName = params.name;
+    initCountBusiness (orderDate,areaName);
 	if( params.name in provinces ){
 		//如果点击的是34个省、市、自治区，绘制选中地区的二级地图
 		$.getJSON('../map/province/'+ provinces[params.name] +'.json', function(data){

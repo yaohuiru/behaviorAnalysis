@@ -3,17 +3,17 @@ package com.unifs.behavioranalysis.controller;
 import com.unifs.behavioranalysis.bean.view.DevCountView;
 import com.unifs.behavioranalysis.service.CountBusinessService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class CountBusinessController {
     @Autowired
     CountBusinessService countBusinessService;
     @RequestMapping(value = "/countUserDevelop" ,method = RequestMethod.POST)
-    public DevCountView countUserDevelop(String orderDate){
-        DevCountView view =  countBusinessService.countUserDevelop("201906","北京市");
+    @ResponseBody
+    public DevCountView countUserDevelop(@RequestParam(value = "orderDate",required=false )String orderDate ,@RequestParam(value = "areaName",required = false)String areaName){
+        System.out.println(orderDate+areaName);
+        DevCountView view =  countBusinessService.countUserDevelop(orderDate,areaName);
         System.out.println(view.toString());
         return view;
     }
