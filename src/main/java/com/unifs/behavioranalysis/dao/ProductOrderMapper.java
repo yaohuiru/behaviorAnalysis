@@ -19,4 +19,6 @@ public interface ProductOrderMapper {
     int updateByPrimaryKey(ProductOrder record);
 
     DevCountView selectUserCountByMonth(@Param("areaName") String areaName , @Param("orderDate") String orderDate);
+
+    DevCountView selectAllCount(@Param("orderDate") String orderDate);
 }

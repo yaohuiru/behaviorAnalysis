@@ -1,23 +1,28 @@
+var orderDate = "201906";
+var areaName = "all";
+
 $(function(){
  	initPie();
  	initMap();
- 	initCountBusiness();
+ 	initCountBusiness(orderDate,areaName);
  	inittendencyInfo();
  	initcomparedInfo();
 })
 
-function initCountBusiness (codeName,orderDate){
+
+function initCountBusiness (orderDate,areaName){
+    console.log(orderDate,areaName)
     $.ajax({
         type : 'post', //测试get，正式post
         cache : false,
         dataType: 'json',
-        contentType: 'application/json;charset=UTF-8',
+        //contentType: 'application/json;charset=UTF-8',
         async:false,
         url:getRootPath_web()+"/countUserDevelop",
-        data: JSON.stringify({
-            codeName: codeName,
-            orderDate:orderDate
-        }),
+        data: {
+            "orderDate":orderDate,
+            "areaName": areaName
+        },
         error : function(){
             console.error("出现异常");
         },
@@ -25,7 +30,7 @@ function initCountBusiness (codeName,orderDate){
             console.log(data);
             //console.log(data.devAmount)
             $("#countUser").html(data.devAmount);
-            $("#countOrder").html(data.acceptAmount);
+            $("#countOrder").html(data.devAmount);
             $("#countAverage").html((data.dayTurnover).toFixed(2));
             $("#countTotal").html(data.totalTurnover);
         }
