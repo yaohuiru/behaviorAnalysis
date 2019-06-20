@@ -21,15 +21,15 @@ import java.util.List;
  * @discription: todo
  */
 
-@RestController
-@RequestMapping("user")
+@Controller
+@RequestMapping("/user")
 public class UserController
 {
     @Autowired
     private UserService userService;
 
 //    登录
-    @PostMapping("login")
+    @PostMapping("/login")
     public String login(User user, HttpServletRequest request){
        List<User> ans;
        ans = userService.selectchange(user);
@@ -49,34 +49,40 @@ public class UserController
 
 //    查询后转换地区字符
     @PostMapping("selectu")
+    @ResponseBody
     public List<User> selectu(@RequestBody User user){
         return userService.selectchange(user);
     }
 
 //    新增
     @PostMapping("insert")
+    @ResponseBody
     public String userinsert(@RequestBody User user){
         userService.userinsert(user);
         return "新增成功";
     }
 //    条件查询
     @PostMapping("select")
+    @ResponseBody
     public List<User> userselect(@RequestBody User user){
         return userService.userselect(user);
     }
 //    查询所有数据
     @PostMapping("selectall")
+    @ResponseBody
     public List<User> userselectall(){
         return userService.userselectall();
     }
 //    修改
     @PostMapping("update")
+    @ResponseBody
     public String userupdate(@RequestBody User user){
         userService.userupdate(user);
         return "修改成功";
     }
 //    删除
     @PostMapping("delete")
+    @ResponseBody
     public String userdelete(@RequestBody String id){
         userService.userdelete(id);
         return "删除成功";
@@ -90,7 +96,5 @@ public class UserController
         return new Resp(RespCode.SUCCESS,hashMaps);
 
     }
-
-
 
 }
