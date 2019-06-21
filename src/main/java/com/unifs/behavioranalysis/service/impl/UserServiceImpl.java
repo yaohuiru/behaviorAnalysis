@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService
     @Autowired
     private AreaInfoMapper areaInfoMapper;
 
-//  查询后转换地区字符
+//  查询后转换地区字符(最低到市)
 
     @Override
     public List<User> selectchange(User user){
@@ -33,6 +33,11 @@ public class UserServiceImpl implements UserService
         AreaInfo tmp;
         while(i<ans.size()){
             tmp = areaInfoMapper.selectByPrimaryKey(ans.get(i).getDepartmentId());
+//            如果为区、县，则修改为市
+            if(tmp.getAreaId()!=tmp.getExStatus()){
+                String str = tmp.getParentId();
+                tmp=areaInfoMapper.selectByPrimaryKey(str);
+            }
             ans.get(i).setDepartmentId(tmp.getAreaName());
             i++;
         }

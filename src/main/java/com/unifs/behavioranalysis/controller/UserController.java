@@ -21,7 +21,7 @@ import java.util.List;
  * @discription: todo
  */
 
-@RestController
+@Controller
 @RequestMapping("user")
 public class UserController
 {
