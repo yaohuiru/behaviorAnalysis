@@ -169,18 +169,20 @@ function initcomparedInfo() {
     window.addEventListener("resize",function(){
         myChart.resize();
     });
-    myChart.on('click',function () {
+    myChart.on('click',function (param) {
+        var index = param.dataIndex;
+        var startIndex = 100*index/amount.length;
         myChart.setOption({
             dataZoom: [
                 {   // 这个dataZoom组件，默认控制x轴。
                     type: 'slider', // 这个 dataZoom 组件是 slider 型 dataZoom 组件
-                    start: 0,      // 左边在 0% 的位置。
-                    end: 1     // 右边在 1% 的位置。
+                    start: startIndex - 1,      // 左边在 0% 的位置。
+                    end: startIndex   // 右边在 1% 的位置。
                 },
                 {
                     type: 'inside',
-                    start: 0,      // 左边在 0% 的位置。
-                    end: 1        // 右边在 10% 的位置。
+                    start: startIndex - 1,      // 左边在 0% 的位置。
+                    end: startIndex       // 右边在 10% 的位置。
                 }
             ]
         });
