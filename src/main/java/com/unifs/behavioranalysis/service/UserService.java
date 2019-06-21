@@ -15,7 +15,7 @@ import java.util.List;
 public interface UserService {
 
 //    查询后转换地区名称
-    List<User> selectchange(User user);
+    User selectchange(User user);
 
     //    新增用户：userinsert
     void userinsert(User user);
@@ -27,7 +27,7 @@ public interface UserService {
     //    查询所有：userselectall
     List<User> userselectall();
     //    查询用户：userselect
-    List<User> userselect(User user);
+    User userselect(User user);
 
  	List<HashMap<String, Object>> parseList();
 }

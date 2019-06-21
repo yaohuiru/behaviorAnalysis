@@ -27,20 +27,13 @@ public class UserServiceImpl implements UserService
 //  查询后转换地区字符
 
     @Override
-    public List<User> selectchange(User user){
-        List<User> ans = userMapper.selectByPrimaryKey(user);
+    public User selectchange(User user){
+        User ans = userMapper.selectByPrimaryKey(user);
         int i =0;
-        AreaInfo tmp;
-        while(i<ans.size()){
-            tmp = areaInfoMapper.selectByPrimaryKey(ans.get(i).getDepartmentId());
-            ans.get(i).setDepartmentId(tmp.getAreaName());
-            i++;
-        }
+        AreaInfo tmp = areaInfoMapper.selectByPrimaryKey(ans.getDepartmentId());
+        ans.setDepartmentId(tmp.getAreaName());
         return ans;
     }
-
-
-
 
     @Override
     //    新增用户：userinsert
@@ -74,7 +67,7 @@ public class UserServiceImpl implements UserService
 
     //    查询用户：userselect
     @Override
-    public List<User> userselect(User user)
+    public User userselect(User user)
     {
         return userMapper.selectByPrimaryKey(user);
     }
@@ -83,7 +76,8 @@ public class UserServiceImpl implements UserService
     public List<HashMap<String, Object>> parseList()
     {
 
-        List<AreaInfo> ProvinceInfos = areaInfoMapper.selectByParentId("0");       int i = 0;
+        List<AreaInfo> ProvinceInfos = areaInfoMapper.selectByParentId("0");
+        int i = 0;
         int j = ProvinceInfos.size();
 
         List<HashMap<String, Object>> rootList = new ArrayList<HashMap<String, Object>>();
