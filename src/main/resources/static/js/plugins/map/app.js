@@ -111,7 +111,8 @@ chart.on('click', function (params) {
     } else if (params.seriesName in provinces) {
         //如果是【直辖市/特别行政区】只有二级下钻
         if (special.indexOf(params.seriesName) >= 0) {
-            renderMap('china', mapdata);
+            //返回顶级
+            initMap();
         } else {
             //显示县级地图
             $.getJSON('../map/city/' + cityMap[params.name] + '.json', function (data) {
@@ -127,6 +128,7 @@ chart.on('click', function (params) {
     } else {
         //返回顶级
         initMap();
+        initCountBusiness(orderDate, userArea);
     }
 });
 
