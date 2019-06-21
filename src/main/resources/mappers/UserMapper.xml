@@ -16,11 +16,11 @@
     where user_id = #{userId,jdbcType=CHAR}
   </delete>
   <insert id="insert" parameterType="com.unifs.behavioranalysis.bean.User" >
-    insert into t_user (user_id, name, user_num, 
-      user_name, user_email, department_id, 
+    insert into t_user (user_id, name, user_num,
+      user_name, user_email, department_id,
       state, password)
-    values (#{userId,jdbcType=CHAR}, #{name,jdbcType=CHAR}, #{userNum,jdbcType=CHAR}, 
-      #{userName,jdbcType=CHAR}, #{userEmail,jdbcType=CHAR}, #{departmentId,jdbcType=CHAR}, 
+    values (#{userId,jdbcType=CHAR}, #{name,jdbcType=CHAR}, #{userNum,jdbcType=CHAR},
+      #{userName,jdbcType=CHAR}, #{userEmail,jdbcType=CHAR}, #{departmentId,jdbcType=CHAR},
       #{state,jdbcType=CHAR},#{password,jdbcType=CHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.unifs.behavioranalysis.bean.User" >

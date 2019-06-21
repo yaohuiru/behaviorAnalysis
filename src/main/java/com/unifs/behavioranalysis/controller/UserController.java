@@ -29,7 +29,7 @@ public class UserController
     private UserService userService;
 
 //    登录
-    @PostMapping("/login")
+    @PostMapping("login")
     public String login(User user, HttpServletRequest request){
        List<User> ans;
        ans = userService.selectchange(user);
@@ -38,7 +38,7 @@ public class UserController
                case "admin":
                    return "html/admin";
                default: {
-                   request.getSession().setAttribute("user", ans.get(0));
+                   request.getSession().setAttribute("User", ans.get(0));
                    return "html/index";
                }
            }
@@ -96,5 +96,7 @@ public class UserController
         return new Resp(RespCode.SUCCESS,hashMaps);
 
     }
+
+
 
 }
