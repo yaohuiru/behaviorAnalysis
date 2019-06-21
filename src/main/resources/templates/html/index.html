@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--引入thymeleaf模板-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -14,6 +15,7 @@
     <!-- <div class="header" >
         
     </div> -->
+    <input id="userArea" type="hidden" th:value="${session.user.departmentId}">
     <div class="content clearfix">
         <div class="content-left left clearfix">
             <div class="left-top border" id="pieGraph">
