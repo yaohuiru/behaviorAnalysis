@@ -38,7 +38,7 @@ public class UserController
                case "admin":
                    return "html/admin";
                default: {
-                   request.getSession().setAttribute("User", ans.get(0));
+                   request.getSession().setAttribute("user", ans.get(0));
                    return "html/index";
                }
            }
