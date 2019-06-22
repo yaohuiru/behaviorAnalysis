@@ -14,7 +14,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
-//保护注释
 @Service
 public class UserServiceImpl implements UserService
 {
@@ -24,37 +23,41 @@ public class UserServiceImpl implements UserService
     @Autowired
     private AreaInfoMapper areaInfoMapper;
 
-//  查询后转换地区字符
+//  查询后转换地区字符(最低到市)
 
     @Override
-    public User selectchange(User user){
-        User ans = userMapper.selectByPrimaryKey(user);
+    public User selectchange(String userNum){
+        User ans = userMapper.selectByUserNum(userNum);
         int i =0;
         AreaInfo tmp = areaInfoMapper.selectByPrimaryKey(ans.getDepartmentId());
+        if(tmp.getAreaId().equals(tmp.getExStatus())){
+            String str = tmp.getParentId();
+            tmp=areaInfoMapper.selectByPrimaryKey(str);
+        }
         ans.setDepartmentId(tmp.getAreaName());
         return ans;
     }
 
     @Override
     //    新增用户：userinsert
-    public void userinsert(User user)
+    public int userinsert(User user)
     {
         user.setUserId(UUID.randomUUID().toString().replace("-", ""));
-        userMapper.insert(user);
+        return userMapper.insert(user);
     }
 
     //    删除用户：userdelete
     @Override
-    public void userdelete(String id)
+    public int userdelete(String userNum)
     {
-        userMapper.deleteByPrimaryKey(id);
+        return userMapper.deleteByUserNum(userNum);
     }
 
     //    修改用户：userupdate
     @Override
-    public void userupdate(User user)
+    public int userupdate(User user)
     {
-        userMapper.updateByPrimaryKey(user);
+        return userMapper.updateByUserNum(user);
     }
 
     //    查询所有：userselectall
@@ -67,17 +70,16 @@ public class UserServiceImpl implements UserService
 
     //    查询用户：userselect
     @Override
-    public User userselect(User user)
+    public User userselect(String userNum)
     {
-        return userMapper.selectByPrimaryKey(user);
+        return userMapper.selectByUserNum(userNum);
     }
 
     @Override
     public List<HashMap<String, Object>> parseList()
     {
 
-        List<AreaInfo> ProvinceInfos = areaInfoMapper.selectByParentId("0");
-        int i = 0;
+        List<AreaInfo> ProvinceInfos = areaInfoMapper.selectByParentId("0");       int i = 0;
         int j = ProvinceInfos.size();
 
         List<HashMap<String, Object>> rootList = new ArrayList<HashMap<String, Object>>();

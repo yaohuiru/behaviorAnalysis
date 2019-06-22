@@ -7,7 +7,7 @@ $(function(){
  	initCountBusiness(orderDate,areaName);
  	inittendencyInfo();
  	initcomparedInfo();
-})
+});
 
 
 function initCountBusiness (orderDate,areaName){

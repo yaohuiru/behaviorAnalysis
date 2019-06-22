@@ -9,13 +9,13 @@ import java.util.List;
 
 @Component
 public interface UserMapper {
-    int deleteByPrimaryKey(String userId);
+    int deleteByUserNum(String userNum);
 
-    int insert(User record);
+    int insert(User user);
 
-    User selectByPrimaryKey(User user);
+    User selectByUserNum(String userNum);
 
     List<User> selectAll();
 
-    int updateByPrimaryKey(User record);
+    int updateByUserNum(User user);
 }

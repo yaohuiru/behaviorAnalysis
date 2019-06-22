@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>更新用户</title>
+    <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+</head>
+<body>
+员工编号：<p id="userNum"></p>
+<script>
+    /*获取到Url里面的参数*/
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+
+        if(r != null) {
+            var r2 = decodeURI(r[2]);
+            return r2;
+        }
+        return null;
+    }
+
+    var userNum = GetQueryString('userNum');
+    $("#userNum").text(userNum);
+</script>
+</body>
+</html>

@@ -10,12 +10,30 @@
     <link type="text/css" href="../css/font-awesome.css" rel="stylesheet" />
     <link type="text/css" href="../css/bootstrap.css" rel="stylesheet" />
     <link type="text/css" href="../css/custom-styles.css" rel="stylesheet" />
+    <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
 </head>
 <body>
     <!-- <div class="header" >
         
     </div> -->
-    <input id="userArea" type="hidden" th:value="${session.user.departmentId}">
+
+    <input id="userArea" type="hidden">
+    <script>
+        /*获取到Url里面的参数*/
+        function GetQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+
+            if(r != null) {
+                var r2 = decodeURI(r[2]);
+                 return r2;
+            }
+            return null;
+        }
+
+        var city = GetQueryString('city');
+        $("#userArea").val(city);
+    </script>
     <div class="content clearfix">
         <div class="content-left left clearfix">
             <div class="left-top border" id="pieGraph">
@@ -148,5 +166,6 @@
     <script type="text/javascript" src="../js/plugins/map/citymap.js"></script>
     <script type="text/javascript" src="../js/plugins/map/app.js"></script>
     <script type="text/javascript" src="../js/index.js"></script>
+
 </body>
 </html>

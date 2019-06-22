@@ -5,33 +5,69 @@
     <title>用户登录</title>
     <!-- <link rel="stylesheet" href="../webjars/bootstrap/4.3.1/css/bootstrap.css"> -->
     <link rel="stylesheet" type="text/css" href="../css/reset.css">
-    <link rel="stylesheet" type="text/css" href="../css/index.css">
-    <link type="text/css" href="../css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../css/login.css">
     <link type="text/css" href="../css/bootstrap.css" rel="stylesheet" />
-    <link type="text/css" href="../css/custom-styles.css" rel="stylesheet" />
-	<script>
+    <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+	<!--<script>
 		function login(){
 			window.open("index.html", "_blank");
 		}
-	</script>
+	</script>-->
 	
 		
 </head>
 	<body>
 		<!-- 登录表单 -->
-      <form style="margin-left:500px;margin-top:200px;"action="/behavioranalysis/user/login"method="post">
-          <div class="form-group">
-              <label for="name" stype="display:inline;">账户：</label>
-              <input type="text" class="form-control" name="name"id="name" style="display:inline;width:200px;"autocomplete="off" />
-          </div>
-         <div class="form-group">
-              <label for="password" style="display:inline;">密码：</label>
-             <input type="text" class="form-control" name="password"id="password" style="display:inline;width:200px;"autocomplete="off" />
-         </div>
-         <button type="submit" class="btn btn-primary" >登录</button>
-        
-     </form>
-		
-		
+      <div class="loginform">
+              <div class="form-group">
+                  <label for="userNum" style="display:inline;">账户：</label>
+                  <input type="text" required="required" class="form-control" name="userNum" id="userNum" style="display:inline;width:220px;height: 40px" autocomplete="off" />
+              </div>
+              <div class="form-group" style="margin: 20px 0px;">
+                  <label for="password" style="display:inline;">密码：</label>
+                  <input type="text" required="required" class="form-control" name="password" id="password" style="display:inline;width:220px;height: 40px"autocomplete="off" />
+              </div>
+              <div class="form-actions">
+                  <button type="submit" class="btn btn-primary" style="width: 267px;height: 40px" id="login">登录</button>
+              </div>
+      </div>
 	</body>
+
+    <script>
+        jQuery(document).ready(function(){
+            $("#login").on("click", function(){
+                var userNum = $("#userNum").val();
+                var password = $("#password").val();
+                if(userNum == null || userNum == "") {alert("用户编号不能为空"); return false;}
+                if(password == null || password == "") {alert("密码不能为空"); return false;}
+                $.ajax({
+                    type:"POST",
+                    contentType:"application/x-www-form-urlencoded",
+                    url:"/behavioranalysis/user/login",
+                    data:{
+                        "userNum":userNum,
+                        "password":password
+                    },
+                    xhrFields:{withCredentials:true},
+                    success:function(data){
+                        if(data.code == 1){
+                            alert("登陆成功");
+                            if(data.data.state==2) {
+                                window.location.href="/behavioranalysis/html/admin.html";
+                            }else if(data.data.state==1) {
+                                window.location.href="/behavioranalysis/html/index.html?city=" + data.data.departmentId;
+                            }
+                        }else{
+                            alert("登陆失败，" + data.msg);
+                            window.location.href="/behavioranalysis/static/login.html";
+                        }
+                    },
+                    error:function(){
+                        alert("登陆失败，" + data.responseText);
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
 </html>
