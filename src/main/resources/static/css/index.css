@@ -1,8 +1,21 @@
+body{
+	background-color: #002a98 !important;
+	color: #fff !important;
+}
 .header {
-	height: 40px;
+	height: 30px;
 	width: 100%;
-	border-bottom: 2px solid #dfdfdf;
-	background-color: #ffffff;
+	border-bottom: 1px solid #0738bb;
+	background-color: #002a98;
+	line-height: 30px;
+}
+.welcome {
+	margin-left: 165px;
+}
+.closed {
+	float: right;
+	margin-right: 165px;
+	margin-top: 7px;
 }
 .content {
 	height: 100%;
@@ -26,8 +39,8 @@
     box-shadow: 0 1px 1px rgba(0, 0, 0, .05)
 }
 .border{
-	border: 1px solid #edd0be;
-	background-color: #fff;
+	border: 5px solid #0738bb;
+	background-color: #002a98;
 	border-radius: 4px;
     -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
     box-shadow: 0 1px 1px rgba(0, 0, 0, .05)
@@ -47,10 +60,9 @@
 .middle-title {
 	height: 40px;
 	width: 95%;
-	font-size: 25px;
+	font-size: 23px;
 	font-family:"Microsoft YaHei";
 	font-weight: 700;
-	line-height: 40px;
 	margin: 5px auto;
 	text-align: center;
 	overflow: hidden;
