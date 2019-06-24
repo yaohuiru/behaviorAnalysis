@@ -63,6 +63,7 @@ function initPie(){
 	            center: ['50%', '55%'],
 	            data:[
 	                {value:33, name:'直接访问'},
+                    // {value:$("#orderAmount"), name:$("#productNanme")},
 	                {value:310, name:'邮件营销'},
 	                {value:234, name:'联盟广告'},
 	                {value:135, name:'视频广告'},

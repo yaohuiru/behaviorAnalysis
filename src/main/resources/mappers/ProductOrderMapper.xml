@@ -88,4 +88,20 @@
                  group by product_id
              ) o where i.product_id = o.product_id
     </select>
+
+    <select id="businessByArea" resultType="com.unifs.behavioranalysis.bean.view.BusinessAnalysisView">
+        select  t1.product_name,sum(order_amount) as productAmount from  t_product_order  t,t_product_info t1
+        where t.product_id=t1.product_id
+        and t.channel_id in
+        (
+        select channel_id from t_channel_info where  t_channel_info.city_code =(
+        select area_id from  t_area_info where area_name like concat('%',#{areaName,jdbcType=VARCHAR},'%')
+        )
+        )
+        and t.order_date like concat ('%',#{orderDate,jdbcType=VARCHAR},'%')
+        group by t.product_id
+
+
+
+    </select>
 </mapper>

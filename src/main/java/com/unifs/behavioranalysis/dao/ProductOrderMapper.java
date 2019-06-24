@@ -1,6 +1,7 @@
 package com.unifs.behavioranalysis.dao;
 
 import com.unifs.behavioranalysis.bean.ProductOrder;
+import com.unifs.behavioranalysis.bean.view.BusinessAnalysisView;
 import com.unifs.behavioranalysis.bean.view.DevCountView;
 import com.unifs.behavioranalysis.bean.view.OrderAmountView;
 import org.apache.ibatis.annotations.Param;
@@ -26,4 +27,6 @@ public interface ProductOrderMapper {
     DevCountView selectAllCount(@Param("orderDate") String orderDate);
 
     List<OrderAmountView> selectOrderAmount();
+
+    List<BusinessAnalysisView> businessByArea(@Param("orderDate")String orderDate,@Param("areaName")String areaName);
 }
