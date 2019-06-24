@@ -43,17 +43,19 @@ function initPie(){
 	var myChart = echarts.init(document.getElementById('pieGraph'));
 		pieoption = {
 	    title : {
-	        text: '6月份业务受理情况',
-	        x:'center',
+	        text: '6月份业务受理情况:',
+	        x:'10',
+            y:'10',
 	        textStyle: {
-              fontSize: 16,
+              fontSize: 14,
               fontWeight: 600,
-              color: '#ff6600'
+              color: '#fff'
             },
 	    },
 	    tooltip : {
 	        trigger: 'item',
-	        formatter: "{a} <br/>{b} : {c} ({d}%)"
+	        formatter: "{a} <br/>{b} : {c} ({d}%)",
+
 	    },
 	    series : [
 	        {
@@ -117,14 +119,18 @@ function initcomparedInfo() {
                 text: '营业额同比交易量',
                 x:'center',
                 textStyle: {
-                    fontSize: 16,
+                    fontSize: 14,
                     fontWeight: 600,
-                    color: '#ff6600'
+                    color: '#fff'
                 },
             },
-            color:["#91C7AE", "#61A0A8"],
+            color:["#91C7AE", "#2d91df"],
             legend: {
                 top:'20',
+                textStyle: {
+                    fontSize: 13,
+                    color: '#fff'
+                }
             },
             tooltip: {
 
@@ -142,12 +148,12 @@ function initcomparedInfo() {
                     height:10,
                     bottom: 20,
                     start: 0,      // 左边在 0% 的位置。
-                    end: 5         // 右边在 10% 的位置。
+                    end: 15         // 右边在 10% 的位置。
                 },
                 {
                     type: 'inside',
                     start: 0,      // 左边在 0% 的位置。
-                    end: 5         // 右边在 10% 的位置。
+                    end: 15         // 右边在 10% 的位置。
                 }
             ],
             dataset: {
@@ -155,8 +161,26 @@ function initcomparedInfo() {
                 dimensions: title,
                 source: content
             },
-            xAxis: {type: 'category'},
-            yAxis: {},
+            xAxis: {type: 'category',
+                axisLine:{
+                    lineStyle:{
+                        color:'#fff',
+                    }
+                }
+            },
+            yAxis: {
+                axisLine:{
+                    lineStyle:{
+                        color:'#fff',
+                    }
+                },
+                splitLine:{
+                    show: 'true',
+                    lineStyle: {
+                        color: '#5a66bd',
+                    }
+                },
+            },
             // Declare several bar series, each will be mapped
             // to a column of dataset.source by default.
             series: [
@@ -196,9 +220,9 @@ function inittendencyInfo() {
             text: '用户发展量走势图',
             x:'center',
             textStyle: {
-                fontSize: 16,
+                fontSize: 14,
                 fontWeight: 600,
-                color: '#ff6600'
+                color: '#fff'
             },
         },
         legend: {
@@ -216,15 +240,57 @@ function inittendencyInfo() {
         },
         xAxis: {
             type: 'category',
+            axisLine:{
+                lineStyle:{
+                    color:'#fff',
+                }
+            },
             boundaryGap: false,
             data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
         },
         yAxis: {
-            type: 'value'
+            type: 'value',
+            axisLine:{
+                lineStyle:{
+                    color:'#fff',
+                }
+            },
+            splitLine:{
+                show: 'true',
+                lineStyle: {
+                    color: '#5a66bd',
+                }
+            },
         },
         series: [{
             data: [820, 932, 901, 934, 1290, 1330, 1320],
             type: 'line',
+            itemStyle: {
+                normal: { //颜色渐变函数 前四个参数分别表示四个位置依次为左、下、右、上
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1,[{
+                            offset: 0, color: '#91C7AE' // 0% 处的颜色
+                        }, {
+                            offset: 0.4, color: '#caeae7' // 100% 处的颜色
+                        }, {
+                            offset: 1, color: '#ffffff' // 100% 处的颜色
+                        }]
+                    ), //背景渐变色
+                    lineStyle: {        // 系列级个性化折线样式
+                        width: 2,
+                        type: 'solid',
+                        color: "#91C7AE" //折线的颜色
+                    }
+                },
+                emphasis: {
+                    color: '#9bdcc8',
+                    lineStyle: {        // 系列级个性化折线样式
+                        width: 1,
+                        type: 'dotted',
+                        color: "9bdcc8"
+                    }
+                }
+            },
+            symbolSize:2, //折线点的大小
             areaStyle: {}
         }]
     };

@@ -100,15 +100,14 @@ body{
 	width: 100%;
 	margin-top: 5px;
 	/*margin-left: 10px;*/
-	color: #ff6600;
-	font-weight: 600;
-	font-size: 16px;
-	text-align: center;
+	font-weight: bold;
+	font-size: 14px;
+	padding: 10px 10px;
 }
 #countUser,#countOrder,#countAverage,#countTotal{
 	display: inline-block;
 	color: #ff8800;
-	font-size: 26px;
+	font-size: 23px;
 	font-weight: 700;
 }
 .countItem {
@@ -116,17 +115,16 @@ body{
 	/*margin:20px 10px;*/
 	width: 50%;
 	text-align: center;
-	margin-top: 25px;
+	margin-top: 18px;
 }
 .countItem img{
-
 	width: 13px;
 	height: 16px;
 }
 .spanitem{
 	margin-top: 5px;
 	display: inline-block;
-    font-size: 16px;
+    font-size: 13px;
 }
 
 
