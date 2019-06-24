@@ -28,6 +28,9 @@ public class UserServiceImpl implements UserService
     @Override
     public User selectchange(String userNum){
         User ans = userMapper.selectByUserNum(userNum);
+        if(ans == null) {
+            return null;
+        }
         int i =0;
         AreaInfo tmp = areaInfoMapper.selectByPrimaryKey(ans.getDepartmentId());
         if(tmp.getAreaId().equals(tmp.getExStatus())){
