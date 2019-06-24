@@ -49,7 +49,7 @@ function initPie(){
 	        textStyle: {
               fontSize: 14,
               fontWeight: 600,
-              color: '#fff'
+              color: '#000'
             },
 	    },
 	    tooltip : {
@@ -121,7 +121,7 @@ function initcomparedInfo() {
                 textStyle: {
                     fontSize: 14,
                     fontWeight: 600,
-                    color: '#fff'
+                    color: '#000'
                 },
             },
             color:["#91C7AE", "#2d91df"],
@@ -129,7 +129,7 @@ function initcomparedInfo() {
                 top:'20',
                 textStyle: {
                     fontSize: 13,
-                    color: '#fff'
+                    color: '#000'
                 }
             },
             tooltip: {
@@ -164,20 +164,20 @@ function initcomparedInfo() {
             xAxis: {type: 'category',
                 axisLine:{
                     lineStyle:{
-                        color:'#fff',
+                        color:'#000',
                     }
                 }
             },
             yAxis: {
                 axisLine:{
                     lineStyle:{
-                        color:'#fff',
+                        color:'#000',
                     }
                 },
                 splitLine:{
                     show: 'true',
                     lineStyle: {
-                        color: '#5a66bd',
+                        color: '#cccccc',
                     }
                 },
             },
@@ -222,7 +222,7 @@ function inittendencyInfo() {
             textStyle: {
                 fontSize: 14,
                 fontWeight: 600,
-                color: '#fff'
+                color: '#000'
             },
         },
         legend: {
@@ -242,7 +242,7 @@ function inittendencyInfo() {
             type: 'category',
             axisLine:{
                 lineStyle:{
-                    color:'#fff',
+                    color:'#000',
                 }
             },
             boundaryGap: false,
@@ -252,13 +252,13 @@ function inittendencyInfo() {
             type: 'value',
             axisLine:{
                 lineStyle:{
-                    color:'#fff',
+                    color:'#000',
                 }
             },
             splitLine:{
                 show: 'true',
                 lineStyle: {
-                    color: '#5a66bd',
+                    color: '#cccccc',
                 }
             },
         },
@@ -268,9 +268,9 @@ function inittendencyInfo() {
             itemStyle: {
                 normal: { //颜色渐变函数 前四个参数分别表示四个位置依次为左、下、右、上
                     color: new echarts.graphic.LinearGradient(0, 0, 0, 1,[{
-                            offset: 0, color: '#91C7AE' // 0% 处的颜色
+                            offset: 0, color: '#c23531' // 0% 处的颜色
                         }, {
-                            offset: 0.4, color: '#caeae7' // 100% 处的颜色
+                            offset: 0.4, color: '#C24F45' // 100% 处的颜色
                         }, {
                             offset: 1, color: '#ffffff' // 100% 处的颜色
                         }]
@@ -278,15 +278,15 @@ function inittendencyInfo() {
                     lineStyle: {        // 系列级个性化折线样式
                         width: 2,
                         type: 'solid',
-                        color: "#91C7AE" //折线的颜色
+                        color: "#c23531" //折线的颜色
                     }
                 },
                 emphasis: {
-                    color: '#9bdcc8',
+                    color: '#c23531',
                     lineStyle: {        // 系列级个性化折线样式
                         width: 1,
                         type: 'dotted',
-                        color: "9bdcc8"
+                        color: "c23531"
                     }
                 }
             },

@@ -1,13 +1,16 @@
 body{
-	background-color: #002a98 !important;
-	color: #fff !important;
+	background-color: #fff !important;  /* #002a98*/
+	color: #000 !important;
 }
 .header {
 	height: 30px;
 	width: 100%;
-	border-bottom: 1px solid #0738bb;
-	background-color: #002a98;
+	margin-bottom: 10px;
+/*	border-bottom: 1px solid #fcd692;*/
+	background-color: #fff;
 	line-height: 30px;
+	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .03);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, .03)
 }
 .welcome {
 	margin-left: 165px;
@@ -22,6 +25,7 @@ body{
 	width: 80%;
 	margin: 0 auto;
 	box-sizing:border-box;
+	padding-bottom: 20px;
 }
 .content-left {
    width: 25%;
@@ -39,11 +43,12 @@ body{
     box-shadow: 0 1px 1px rgba(0, 0, 0, .05)
 }
 .border{
-	border: 5px solid #0738bb;
-	background-color: #002a98;
+	border: 1px solid #fcd692;
+	background-color: #fff;
 	border-radius: 4px;
-    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .05)
+	-moz-box-shadow:0 0 3px #fcd692;
+	-webkit-box-shadow:0 0 3px #fcd692;
+	box-shadow:0 0 3px #fcd692;
 }
 .pieGraph {
 	width: 90%;

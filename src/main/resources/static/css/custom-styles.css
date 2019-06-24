@@ -73,9 +73,9 @@ border-bottom: 1px solid #C7D1DD;
 
 }
 .panel-default > .panel-heading {
-color: #fff;
-background-color: #002a98;
-border-color: #0738bb;
+color: #000;
+background-color: #fff;
+border-color: #fff !important;
 font-weight:bold;
 }
 .jumbotron, .well{
