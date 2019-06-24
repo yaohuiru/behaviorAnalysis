@@ -5,33 +5,40 @@
     <title>用户登录</title>
     <!-- <link rel="stylesheet" href="../webjars/bootstrap/4.3.1/css/bootstrap.css"> -->
     <link rel="stylesheet" type="text/css" href="../css/reset.css">
-    <link rel="stylesheet" type="text/css" href="../css/index.css">
-    <link type="text/css" href="../css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../css/login.css">
     <link type="text/css" href="../css/bootstrap.css" rel="stylesheet" />
-    <link type="text/css" href="../css/custom-styles.css" rel="stylesheet" />
-	<script>
-		function login(){
-			window.open("index.html", "_blank");
-		}
-	</script>
-	
-		
+    <script>
+        function login(){
+            window.open("index.html", "_blank");
+        }
+    </script>
+
+
 </head>
-	<body>
-		<!-- 登录表单 -->
-      <form style="margin-left:500px;margin-top:200px;"action="/behavioranalysis/user/login"method="post">
-          <div class="form-group">
-              <label for="name" stype="display:inline;">账户：</label>
-              <input type="text" class="form-control" name="name"id="name" style="display:inline;width:200px;"autocomplete="off" />
-          </div>
-         <div class="form-group">
-              <label type="password" for="password" style="display:inline;">密码：</label>
-             <input type="text" class="form-control" name="password"id="password" style="display:inline;width:200px;"autocomplete="off" />
-         </div>
-         <button type="submit" class="btn btn-primary" >登录</button>
-        
-     </form>
-		
-		
-	</body>
+<body>
+<div class="title">
+    <img src="../images/logo.png">
+    用户行为分析系统
+</div>
+<!-- 登录表单 -->
+<div class="loginform">
+    <form action="/behavioranalysis/user/login"method="post">
+        <div class="form-group">
+            <label for="name" stype="display:inline;">账户：</label>
+            <input type="text" class="form-control" name="name"id="name" style="display:inline;width:220px;height: 40px;position: relative;"autocomplete="off" />
+            <span class="glyphicon glyphicon-user usericon" aria-hidden="true"></span>
+        </div>
+        <div class="form-group" style="margin: 20px 0px;">
+            <label for="password" style="display:inline;">密码：</label>
+            <input type="password" class="form-control" name="password"id="password" style="display:inline;width:220px;height: 40px;position: relative;"autocomplete="off" />
+            <span class="glyphicon glyphicon-lock usericon" aria-hidden="true"></span>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 267px;height: 40px">登录</button>
+
+    </form>
+</div>
+
+
+
+</body>
 </html>
