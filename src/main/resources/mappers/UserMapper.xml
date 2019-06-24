@@ -25,22 +25,23 @@
   </insert>
   <update id="updateByUserNum" parameterType="com.unifs.behavioranalysis.bean.User" >
     update t_user
-    set
-    <if test="userName != null and userName != ''">
-      user_name = #{userName,jdbcType=CHAR},
-    </if>
-    <if test="userEmail != null and userEmail != ''">
-      user_email = #{userEmail,jdbcType=CHAR},
-    </if>
-    <if test="departmentId != null and departmentId != ''">
-      department_id = #{departmentId,jdbcType=CHAR},
-    </if>
-    <if test="state != null and state != ''">
-      state = #{state,jdbcType=CHAR},
-    </if>
-    <if test="password != null and password != ''">
-      password = #{password,jdbcType=CHAR}
-    </if>
+    <set>
+      <if test="userName != null and userName != ''">
+        user_name = #{userName,jdbcType=CHAR},
+      </if>
+      <if test="userEmail != null and userEmail != ''">
+        user_email = #{userEmail,jdbcType=CHAR},
+      </if>
+      <if test="departmentId != null and departmentId != ''">
+        department_id = #{departmentId,jdbcType=CHAR},
+      </if>
+      <if test="state != null and state != ''">
+        state = #{state,jdbcType=CHAR},
+      </if>
+      <if test="password != null and password != ''">
+        password = #{password,jdbcType=CHAR},
+      </if>
+    </set>
     where user_num = #{userNum,jdbcType=CHAR}
   </update>
   <select id="selectByUserNum" resultMap="BaseResultMap" parameterType="java.lang.String" >

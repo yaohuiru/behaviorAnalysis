@@ -71,8 +71,8 @@
                         <label class="control-label">权限</label>
                         <div>
                             <select id="state" name="state">
-                                <option value="">系统管理员</option>
-                                <option value="">普通用户</option>
+                                <option value="2">系统管理员</option>
+                                <option value="1">普通用户</option>
                             </select>
                         </div>
                     </div>
@@ -102,39 +102,39 @@
                     <div class="form-group">
                         <label class="control-label">员工昵称</label>
                         <div>
-                            <input type="text" name="name" id="addname">
+                            <input type="text" required="required" name="name" id="addname">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label">员工姓名</label>
                         <div>
-                            <input type="text" name="userName" id="adduserName">
+                            <input type="text" required="required" name="userName" id="adduserName">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label">员工邮箱</label>
                         <div>
-                            <input type="text" name="userEmail" id="adduserEmail">
+                            <input type="text" required="required"  name="userEmail" id="adduserEmail">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label">员工部门</label>
-                        <select id="selectProv1">
+                        <select id="selectProv1" required="required" >
 
                         </select>
                     </div>
                     <div class="form-group">
                         <label class="control-label">密码</label>
                         <div>
-                            <input type="password" name="password" id="addpassword">
+                            <input type="password" required="required"  name="password" id="addpassword">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label">权限</label>
                         <div>
-                            <select id="addstate">
-                                <option value="">系统管理员</option>
-                                <option value="">普通用户</option>
+                            <select id="addstate" required="required" >
+                                <option value="2">系统管理员</option>
+                                <option value="1">普通用户</option>
                             </select>
                         </div>
                     </div>
@@ -227,8 +227,8 @@
 
         for (var i = 0; i < provlist.length; i++) {
             /*$('#selectProv').innerHTML += "<option" +"id='"+provlist[i]["id"]+"'>"+provlist[i]["label"]+"</option>";*/
-            $('#selectProv').append("<option>"+provlist[i].areaName+"</option>");
-            $('#selectProv1').append("<option>"+provlist[i].areaName+"</option>");
+            $('#selectProv').append("<option value='"+provlist[i].areaId+"'>"+provlist[i].areaName+"</option>");
+            $('#selectProv1').append("<option value='"+provlist[i].areaId+"'>"+provlist[i].areaName+"</option>");
 
         }
     };
@@ -257,9 +257,11 @@
         var userNum = $("#userNum").val();
         var userName = $("#userName").val();
         var userEmail = $("#userEmail").val();
-        var departmentId = $("#departmentId").val();
+        var options=$("#selectProv option:selected");
+        var departmentId = options.val();
         var password = $("#password").val();
-        var state = $("#state").val();
+        var options1=$("#state option:selected");
+        var state = options1.val();
         $.ajax({
             type:"POST",
             contentType:"application/json; charset=utf-8",
@@ -294,9 +296,11 @@
         var userNum = $("#adduserNum").val();
         var userName = $("#adduserName").val();
         var userEmail = $("#adduserEmail").val();
-        var departmentId = $("#adddepartmentId").val();
+        var options=$("#selectProv1 option:selected");
+        var departmentId = options.val();
         var password = $("#addpassword").val();
-        var state = $("#addstate").val();
+        var options1=$("#addstate option:selected");
+        var state = options1.val();
         $.ajax({
             type:"POST",
             contentType:"application/json; charset=utf-8",
