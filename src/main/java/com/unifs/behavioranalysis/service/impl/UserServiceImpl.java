@@ -76,6 +76,11 @@ public class UserServiceImpl implements UserService
     }
 
     @Override
+    public List<AreaInfo> selectAllArea() {
+        return areaInfoMapper.selectAll();
+    }
+
+    @Override
     public List<HashMap<String, Object>> parseList()
     {
 

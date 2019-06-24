@@ -19,7 +19,17 @@ import javax.sound.midi.Soundbank;
 public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        System.out.println("经过拦截器");
-        return true;
+        Object user = request.getSession().getAttribute("LOGIN_USER");
+        if (user == null) {
+            //未登陆，返回登陆页面
+            /*request.setAttribute("message","您没有权限访问，请先登陆！");
+            request.getRequestDispatcher("/").forward(request, response);*/
+            response.sendRedirect(request.getContextPath());
+            return false;
+        } else {
+            return true;
+        }
+        /*System.out.println("经过拦截器");
+        return true;*/
     }
 }

@@ -57,9 +57,9 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label">员工部门</label>
-                        <div>
-                            <input type="text" name="departmentId" id="departmentId">
-                        </div>
+                        <select id="selectProv">
+
+                        </select>
                     </div>
                     <div class="form-group">
                         <label class="control-label">密码</label>
@@ -119,9 +119,9 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label">员工部门</label>
-                        <div>
-                            <input type="text" name="departmentId" id="adddepartmentId">
-                        </div>
+                        <select id="selectProv1">
+
+                        </select>
                     </div>
                     <div class="form-group">
                         <label class="control-label">密码</label>
@@ -195,14 +195,43 @@
     function actionFormatter(value, row, params) {
         var result = "";
         /*result += "<a href='javascript:;' class='btn btn-xs blue' onclick=\"EditViewById('" + row.userNum + "')\" title='编辑'><span class='glyphicon glyphicon-pencil'></span></a>";*/
-        result += "<button class='btn btn-primary btn-sm' style='margin: 0 1px' data-toggle='modal' data-target='#myModal'><a href='javascript:;' style='color: white; text-decoration-line: none' onclick=\"EditViewById('" + row.userNum + "')\" title='修改'>修改</a></button>";
-        result += "<button class='btn btn-primary btn-sm' style='margin: 0 1px'><a href='javascript:;' style='color: white; text-decoration-line: none' onclick=\"DeleteByIds('" + row.userNum + "')\" title='删除'>删除</a></button>";
+        result += "<button class='btn btn-primary btn-sm' style='margin: 1px 1px' data-toggle='modal' data-target='#myModal'><a href='javascript:;' style='color: white; text-decoration-line: none' onclick=\"EditViewById('" + row.userNum + "')\" title='修改'>修改</a></button>";
+        result += "<button class='btn btn-primary btn-sm' style='margin: 1px 1px'><a href='javascript:;' style='color: white; text-decoration-line: none' onclick=\"DeleteByIds('" + row.userNum + "')\" title='删除'>删除</a></button>";
         return result;
     }
 
+
     function EditViewById(id) {
         $('#userNum').val(id);
+
     }
+
+    window.onload=function(){
+        var provlist = [];
+        $.ajax({
+            async: false,
+            type:"GET",
+            contentType:"application/x-www-form-urlencoded",
+            url:"/behavioranalysis/user/getArea",
+            data:{
+            },
+            xhrFields:{withCredentials:true},
+            success:function(data){
+                provlist=data.data;
+
+            },
+            error:function(){
+                alert(data);
+            }
+        });
+
+        for (var i = 0; i < provlist.length; i++) {
+            /*$('#selectProv').innerHTML += "<option" +"id='"+provlist[i]["id"]+"'>"+provlist[i]["label"]+"</option>";*/
+            $('#selectProv').append("<option>"+provlist[i].areaName+"</option>");
+            $('#selectProv1').append("<option>"+provlist[i].areaName+"</option>");
+
+        }
+    };
 
     function DeleteByIds(id) {
         $.ajax({

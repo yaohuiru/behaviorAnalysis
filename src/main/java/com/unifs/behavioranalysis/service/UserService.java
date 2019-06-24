@@ -1,6 +1,7 @@
 package com.unifs.behavioranalysis.service;
 
 
+import com.unifs.behavioranalysis.bean.AreaInfo;
 import com.unifs.behavioranalysis.bean.User;
 
 import java.util.HashMap;
@@ -31,6 +32,8 @@ public interface UserService {
 
     //    查询用户：userselect
     User userselect(String userNum);
+
+    List<AreaInfo> selectAllArea();
 
  	List<HashMap<String, Object>> parseList();
 }

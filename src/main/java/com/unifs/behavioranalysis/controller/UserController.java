@@ -1,6 +1,7 @@
 package com.unifs.behavioranalysis.controller;
 
 import com.unifs.behavioranalysis.base.Resp;
+import com.unifs.behavioranalysis.bean.AreaInfo;
 import com.unifs.behavioranalysis.bean.User;
 import com.unifs.behavioranalysis.enums.RespCode;
 import com.unifs.behavioranalysis.service.UserService;
@@ -37,7 +38,7 @@ public class UserController
     @PostMapping("login")
     @ResponseBody
     public Resp login(@RequestParam("userNum") String userNum,
-                              @RequestParam("password") String password){
+                      @RequestParam("password") String password){
        if(StringUtils.isEmpty(userNum) || StringUtils.isEmpty(password)) {
            return new Resp(RespCode.DEFAULT, "员工编号和密码不能为空");
        }
@@ -125,10 +126,11 @@ public class UserController
 
 
     @GetMapping("/getArea")
+    @ResponseBody
     public Resp getArea()
     {
-        List<HashMap<String, Object>> hashMaps = userService.parseList();
-        return new Resp(RespCode.SUCCESS,hashMaps);
+        List<AreaInfo> areas = userService.selectAllArea();
+        return new Resp(RespCode.SUCCESS,areas);
 
     }
 }
