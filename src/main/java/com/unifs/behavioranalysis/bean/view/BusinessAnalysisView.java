@@ -12,8 +12,8 @@ import lombok.ToString;
 @Data
 @ToString
 public class BusinessAnalysisView {
-    //业务名称
-    private String productName;
     //业务受理数量
-    private String productAmount;
+    private String value;
+    //业务受理名称
+    private String name;
 }

@@ -90,7 +90,7 @@
     </select>
 
     <select id="businessByArea" resultType="com.unifs.behavioranalysis.bean.view.BusinessAnalysisView">
-        select  t1.product_name as productName,sum(order_amount) as productAmount from  t_product_order  t,t_product_info t1
+        select  t1.product_name as name,sum(order_amount) as value from  t_product_order  t,t_product_info t1
         where t.product_id=t1.product_id
         and t.channel_id in
         (

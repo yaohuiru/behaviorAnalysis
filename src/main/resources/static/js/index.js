@@ -1,5 +1,5 @@
 var orderDate = "201906";
-var areaName = "all";
+var areaName = "北京";
 
 $(function(){
  	initPie();
@@ -40,7 +40,31 @@ function initCountBusiness (orderDate,areaName){
 
 
 function initPie(){
-	var myChart = echarts.init(document.getElementById('pieGraph'));
+
+    var business;
+
+    $.ajax({
+        type : 'post',
+        cache : false,
+        dataType: 'json',
+        async:false,
+        url:getRootPath_web()+"/businessAnalysis",
+        data: {
+            "orderDate":orderDate,
+            "areaName": areaName
+        },
+        error : function(){
+            console.error("业务受理数据获取出现异常");
+        },
+        success : function(data){
+            console.log(data);
+            business=data;
+            //console.log(data.devAmount)
+
+        }
+    });
+
+    var myChart = echarts.init(document.getElementById('pieGraph'));
 		pieoption = {
 	    title : {
 	        text: '6月份业务受理情况',
@@ -57,21 +81,21 @@ function initPie(){
 	    },
 	    series : [
 	        {
-	            name: '访问来源',
+	            name: '业务统计情况',
 	            type: 'pie',
 	            radius : '50%',
 	            center: ['50%', '55%'],
-	            data:[
-	                {value:33, name:'直接访问'},
-                    // {value:$("#orderAmount"), name:$("#productNanme")},
-	                {value:310, name:'邮件营销'},
-	                {value:234, name:'联盟广告'},
-	                {value:135, name:'视频广告'},
-	                {value:1548, name:'搜索引擎'}
-	            ],
+	            data:business,
+                // data:[
+	            //     {value:33, name:'直接访问'},
+	            //     {value:310, name:'邮件营销'},
+	            //     {value:234, name:'联盟广告'},
+	            //     {value:135, name:'视频广告'},
+	            //     {value:1548, name:'搜索引擎'}
+	            // ],
 	            itemStyle: {
 	                emphasis: {
-	                    shadowBlur: 10,
+	                    shadowBlur: 5,
 	                    shadowOffsetX: 0,
 	                    shadowColor: 'rgba(0, 0, 0, 0.5)'
 	                }
