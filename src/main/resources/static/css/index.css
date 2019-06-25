@@ -1,14 +1,31 @@
+body{
+	background-color: #fff !important;  /* #002a98*/
+	color: #000 !important;
+}
 .header {
-	height: 40px;
+	height: 30px;
 	width: 100%;
-	border-bottom: 2px solid #dfdfdf;
-	background-color: #ffffff;
+	margin-bottom: 10px;
+/*	border-bottom: 1px solid #fcd692;*/
+	background-color: #fff;
+	line-height: 30px;
+	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .03);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, .03)
+}
+.welcome {
+	margin-left: 165px;
+}
+.closed {
+	float: right;
+	margin-right: 165px;
+	margin-top: 7px;
 }
 .content {
 	height: 100%;
 	width: 80%;
 	margin: 0 auto;
 	box-sizing:border-box;
+	padding-bottom: 20px;
 }
 .content-left {
    width: 25%;
@@ -26,11 +43,12 @@
     box-shadow: 0 1px 1px rgba(0, 0, 0, .05)
 }
 .border{
-	border: 1px solid #edd0be;
+	border: 1px solid #fcd692;
 	background-color: #fff;
 	border-radius: 4px;
-    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .05)
+	-moz-box-shadow:0 0 3px #fcd692;
+	-webkit-box-shadow:0 0 3px #fcd692;
+	box-shadow:0 0 3px #fcd692;
 }
 .pieGraph {
 	width: 90%;
@@ -47,10 +65,9 @@
 .middle-title {
 	height: 40px;
 	width: 95%;
-	font-size: 25px;
+	font-size: 23px;
 	font-family:"Microsoft YaHei";
 	font-weight: 700;
-	line-height: 40px;
 	margin: 5px auto;
 	text-align: center;
 	overflow: hidden;
@@ -88,15 +105,14 @@
 	width: 100%;
 	margin-top: 5px;
 	/*margin-left: 10px;*/
-	color: #ff6600;
-	font-weight: 600;
-	font-size: 16px;
-	text-align: center;
+	font-weight: bold;
+	font-size: 14px;
+	padding: 10px 10px;
 }
 #countUser,#countOrder,#countAverage,#countTotal{
 	display: inline-block;
 	color: #ff8800;
-	font-size: 26px;
+	font-size: 23px;
 	font-weight: 700;
 }
 .countItem {
@@ -104,17 +120,16 @@
 	/*margin:20px 10px;*/
 	width: 50%;
 	text-align: center;
-	margin-top: 25px;
+	margin-top: 18px;
 }
 .countItem img{
-
 	width: 13px;
 	height: 16px;
 }
 .spanitem{
 	margin-top: 5px;
 	display: inline-block;
-    font-size: 16px;
+    font-size: 13px;
 }
 
 

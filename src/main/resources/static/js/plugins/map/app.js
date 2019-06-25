@@ -136,12 +136,12 @@ chart.on('click', function (params) {
 var option = {
     backgroundColor: '#fff',
     title: {
-        text: '中国地图',
+        /*text: '中国地图',*/
         subtext: '省市区三级下钻',
         //link:'http://www.ldsun.com',
         left: 'center',
         textStyle: {
-            color: '#00cccc',
+            color: '#91c7ae',
             fontSize: 16,
             fontWeight: 'normal',
             fontFamily: "Microsoft YaHei"
@@ -195,7 +195,7 @@ function renderMap(map, data) {
                     show: true,
                     //区域名称字体设置
                     textStyle: {
-                        color: '#999',
+                        color: '#fff',
                         fontSize: 10
                     }
                 },
@@ -209,11 +209,11 @@ function renderMap(map, data) {
             },
             itemStyle: {
                 normal: {
-                    areaColor: 'yellow',
-                    borderColor: 'dodgerblue'
+                    areaColor: '#ffa640',
+                    borderColor: '#86280e'
                 },
                 emphasis: {
-                    areaColor: 'darkorange'
+                    areaColor: '#FF8900'
                 }
             },
             data: data
