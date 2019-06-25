@@ -169,6 +169,10 @@
                 title: '员工姓名'
             },
             {
+                field: 'name',
+                title: '员工昵称'
+            },
+            {
                 field: 'userEmail',
                 title: '员工邮箱'
             },
@@ -195,14 +199,21 @@
     function actionFormatter(value, row, params) {
         var result = "";
         /*result += "<a href='javascript:;' class='btn btn-xs blue' onclick=\"EditViewById('" + row.userNum + "')\" title='编辑'><span class='glyphicon glyphicon-pencil'></span></a>";*/
-        result += "<button class='btn btn-primary btn-sm' style='margin: 1px 1px' data-toggle='modal' data-target='#myModal'><a href='javascript:;' style='color: white; text-decoration-line: none' onclick=\"EditViewById('" + row.userNum + "')\" title='修改'>修改</a></button>";
+        result += "<button class='btn btn-primary btn-sm' style='margin: 1px 1px' data-toggle='modal' data-target='#myModal'><a href='javascript:;' style='color: white; text-decoration-line: none' " +
+            "onclick=\"EditViewById('" + row.userNum+"','"+row.name+"','"+row.userName+"','"+row.userEmail+"','"+row.departmentId+"','"+row.password+"','"+row.state + "')\" title='修改'>修改</a></button>";
         result += "<button class='btn btn-primary btn-sm' style='margin: 1px 1px'><a href='javascript:;' style='color: white; text-decoration-line: none' onclick=\"DeleteByIds('" + row.userNum + "')\" title='删除'>删除</a></button>";
         return result;
     }
 
 
-    function EditViewById(id) {
-        $('#userNum').val(id);
+    function EditViewById(userNum,name,userName,userEmail,departmentId,password,state) {
+        $('#userNum').val(userNum);
+        $('#name').val(name);
+        $('#userName').val(userName);
+        $('#userEmail').val(userEmail);
+        $('#selectProv').val(departmentId);
+        $('#password').val(password);
+        $('#state').val(state);
 
     }
 
