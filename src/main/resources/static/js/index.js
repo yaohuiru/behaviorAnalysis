@@ -7,9 +7,12 @@ $(function(){
  	initCountBusiness(orderDate,areaName);
  	inittendencyInfo();
  	initcomparedInfo();
+ 	$("#username").html(localStorage.getItem("userNum"));
+    $("#city").html(localStorage.getItem("city"));
 });
-
-
+$("#closed").click(function(){
+    window.location.href="/behavioranalysis/login.html";
+})
 function initCountBusiness (orderDate,areaName){
     console.log(orderDate,areaName)
     $.ajax({

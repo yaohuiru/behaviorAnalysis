@@ -19,6 +19,7 @@ body{
 	float: right;
 	margin-right: 165px;
 	margin-top: 7px;
+	cursor: pointer;
 }
 .content {
 	height: 100%;
@@ -26,6 +27,7 @@ body{
 	margin: 0 auto;
 	box-sizing:border-box;
 	padding-bottom: 20px;
+
 }
 .content-left {
    width: 25%;

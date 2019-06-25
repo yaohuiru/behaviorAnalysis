@@ -54,16 +54,19 @@
                     },
                     xhrFields:{withCredentials:true},
                     success:function(data){
+                        console.log(data)
                         if(data.code == 1){
                             alert("登陆成功");
                             if(data.data.state==2) {
                                 window.location.href="/behavioranalysis/html/admin.html";
                             }else if(data.data.state==1) {
                                 window.location.href="/behavioranalysis/html/index.html?city=" + data.data.departmentId;
+                                localStorage.setItem("userNum",data.data.userNum);
+                                localStorage.setItem("city",data.data.departmentId);
                             }
                         }else{
                             alert("登陆失败，" + data.data);
-                            window.location.href="/behavioranalysis/static/login.html";
+                            window.location.href="/behavioranalysis/login.html";
                         }
                     },
                     error:function(){
