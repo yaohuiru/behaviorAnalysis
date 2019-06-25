@@ -264,9 +264,9 @@ function initcomparedInfo() {
 function inittendencyInfo() {
     var myChart = echarts.init(document.getElementById('tendencyInfo'));
     tendencyOption = {
-        title: {
+        title : {
             text: '用户发展量走势图',
-            x: 'center',
+            x:'center',
             textStyle: {
                 fontSize: 14,
                 fontWeight: 600,
@@ -274,21 +274,23 @@ function inittendencyInfo() {
             },
         },
         legend: {
-            bottom: '0',
+            bottom:'0',
         },
-        tooltip: {},
-        grid: {
-            x: 70,
-            y: 60,
-            x2: 40,
-            y2: 50,
-            borderWidth: 1
+        tooltip: {
+
+        },
+        grid:{
+            x:70,
+            y:60,
+            x2:40,
+            y2:50,
+            borderWidth:1
         },
         xAxis: {
             type: 'category',
-            axisLine: {
-                lineStyle: {
-                    color: '#000',
+            axisLine:{
+                lineStyle:{
+                    color:'#000',
                 }
             },
             boundaryGap: false,
@@ -296,12 +298,12 @@ function inittendencyInfo() {
         },
         yAxis: {
             type: 'value',
-            axisLine: {
-                lineStyle: {
-                    color: '#000',
+            axisLine:{
+                lineStyle:{
+                    color:'#000',
                 }
             },
-            splitLine: {
+            splitLine:{
                 show: 'true',
                 lineStyle: {
                     color: '#cccccc',
@@ -313,7 +315,7 @@ function inittendencyInfo() {
             type: 'line',
             itemStyle: {
                 normal: { //颜色渐变函数 前四个参数分别表示四个位置依次为左、下、右、上
-                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1,[{
                             offset: 0, color: '#c23531' // 0% 处的颜色
                         }, {
                             offset: 0.4, color: '#C24F45' // 100% 处的颜色
@@ -336,12 +338,12 @@ function inittendencyInfo() {
                     }
                 }
             },
-            symbolSize: 2, //折线点的大小
+            symbolSize:2, //折线点的大小
             areaStyle: {}
         }]
     };
-    myChart.setOption(tendencyOption, true);
-    window.addEventListener("resize", function () {
+    myChart.setOption(tendencyOption,true);
+    window.addEventListener("resize",function(){
         myChart.resize();
     });
 }
