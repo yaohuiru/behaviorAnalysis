@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.unifs.behavioranalysis.dao.ProductOrderMapper" >
-  <resultMap id="BaseResultMap" type="com.unifs.behavioranalysis.bean.ProductOrder" >
-    <id column="user_no" property="userNo" jdbcType="VARCHAR" />
-    <result column="user_id" property="userId" jdbcType="VARCHAR" />
-    <result column="product_mode" property="productMode" jdbcType="VARCHAR" />
-    <result column="product_id" property="productId" jdbcType="VARCHAR" />
-    <result column="staff_id" property="staffId" jdbcType="VARCHAR" />
-    <result column="channel_id" property="channelId" jdbcType="VARCHAR" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+<mapper namespace="com.unifs.behavioranalysis.dao.ProductOrderMapper">
+    <resultMap id="BaseResultMap" type="com.unifs.behavioranalysis.bean.ProductOrder">
+        <id column="user_no" property="userNo" jdbcType="VARCHAR"/>
+        <result column="user_id" property="userId" jdbcType="VARCHAR"/>
+        <result column="product_mode" property="productMode" jdbcType="VARCHAR"/>
+        <result column="product_id" property="productId" jdbcType="VARCHAR"/>
+        <result column="staff_id" property="staffId" jdbcType="VARCHAR"/>
+        <result column="channel_id" property="channelId" jdbcType="VARCHAR"/>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from t_product_order
     where user_no = #{userNo,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.unifs.behavioranalysis.bean.ProductOrder" >
+    <insert id="insert" parameterType="com.unifs.behavioranalysis.bean.ProductOrder">
     insert into t_product_order (user_no, user_id, product_mode, 
       product_id, staff_id, channel_id
       )
@@ -21,7 +21,7 @@
       #{productId,jdbcType=VARCHAR}, #{staffId,jdbcType=VARCHAR}, #{channelId,jdbcType=VARCHAR}
       )
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.unifs.behavioranalysis.bean.ProductOrder" >
+    <update id="updateByPrimaryKey" parameterType="com.unifs.behavioranalysis.bean.ProductOrder">
     update t_product_order
     set user_id = #{userId,jdbcType=VARCHAR},
       product_mode = #{productMode,jdbcType=VARCHAR},
@@ -30,17 +30,17 @@
       channel_id = #{channelId,jdbcType=VARCHAR}
     where user_no = #{userNo,jdbcType=VARCHAR}
   </update>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
     select user_no, user_id, product_mode, product_id, staff_id, channel_id
     from t_product_order
     where user_no = #{userNo,jdbcType=VARCHAR}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap" >
+    <select id="selectAll" resultMap="BaseResultMap">
     select user_no, user_id, product_mode, product_id, staff_id, channel_id
     from t_product_order
   </select>
 
-  <select id="selectUserCountByMonth" resultType="com.unifs.behavioranalysis.bean.view.DevCountView" >
+    <select id="selectUserCountByMonth" resultType="com.unifs.behavioranalysis.bean.view.DevCountView">
     SELECT
         COUNT(0) devAmount,
         sum(order_amount) totalTurnover,
@@ -65,7 +65,8 @@
          )
          and order_date like CONCAT('%',#{orderDate,jdbcType=VARCHAR},'%')
   </select>
-  <select id="selectAllCount" resultType="com.unifs.behavioranalysis.bean.view.DevCountView" parameterType="java.lang.String">
+    <select id="selectAllCount" resultType="com.unifs.behavioranalysis.bean.view.DevCountView"
+            parameterType="java.lang.String">
         SELECT
            COUNT(0) devAmount,
             sum(order_amount) totalTurnover,
@@ -87,5 +88,77 @@
                  where month(str_to_date(order_date, '%Y%m%d'))=month(now()) and a.product_id = b.product_id
                  group by product_id
              ) o where i.product_id = o.product_id
+    </select>
+
+    <!--查询用户发展排行信息-->
+    <select id="selectUserRankingByName" parameterType="String" resultType="com.unifs.behavioranalysis.bean.view.RankingView">
+        SELECT
+            T2.area_name areaName,count(*) totalAmount
+        FROM
+            t_product_order T3,(
+                #获取到渠道编码信息
+                SELECT
+                    channel_id,T1.area_name
+                FROM
+                    t_channel_info , (
+                        #查询该名称单位下的所有下一级子区域的ID
+                        SELECT
+                            area_id,area_name
+                        FROM
+                            t_area_info
+                        WHERE
+                            parent_id IN (
+                                #模糊查询该名称区域的ID信息取第一条记录
+                                SELECT
+                                    area_id
+                                FROM
+                                    t_area_info
+                                WHERE
+                                    area_name LIKE '${_parameter}%'
+                            )
+                    ) T1
+                WHERE
+                    province_code =T1.area_id
+            ) T2
+        WHERE
+            T3.channel_id =T2.channel_id
+        GROUP BY T2.area_name
+        order BY count(*) desc
+    </select>
+
+    <!--查询营业收入排行-->
+    <select id="selectIncomeRankingByName" parameterType="String" resultType="com.unifs.behavioranalysis.bean.view.RankingView">
+        SELECT
+            T2.area_name areaName,sum(order_amount) totalIncome
+        FROM
+            t_product_order T3,(
+                #获取到渠道编码信息
+                SELECT
+                    channel_id,T1.area_name
+                FROM
+                    t_channel_info , (
+                        #查询该名称单位下的所有下一级子区域的ID
+                        SELECT
+                            area_id,area_name
+                        FROM
+                            t_area_info
+                        WHERE
+                            parent_id IN (
+                                #模糊查询该名称区域的ID信息取第一条记录
+                                SELECT
+                                    area_id
+                                FROM
+                                    t_area_info
+                                WHERE
+                                    area_name LIKE '${_parameter}%'
+                            )
+                    ) T1
+                WHERE
+                    province_code =T1.area_id
+            ) T2
+        WHERE
+            T3.channel_id =T2.channel_id
+        GROUP BY T2.area_name
+        order BY sum(order_amount) desc
     </select>
 </mapper>

@@ -1,32 +1,81 @@
 var orderDate = "201906";
 var areaName = "all";
 
-$(function(){
- 	initPie();
- 	initMap();
- 	initCountBusiness(orderDate,areaName);
- 	inittendencyInfo();
- 	initcomparedInfo();
+$(function () {
+    initPie();
+    initMap();
+    initCountBusiness(orderDate, areaName);
+    inittendencyInfo();
+    initcomparedInfo();
+    initUserRank();
 });
 
 
-function initCountBusiness (orderDate,areaName){
-    console.log(orderDate,areaName)
+//初始化用户发展排行信息
+function initUserRank() {
+    areaName=document.getElementById("userArea").value;
+    console.log(areaName);
     $.ajax({
-        type : 'post', //测试get，正式post
-        cache : false,
+        type: 'post', //测试get，正式post
+        cache: false,
         dataType: 'json',
-        //contentType: 'application/json;charset=UTF-8',
-        async:false,
-        url:getRootPath_web()+"/countUserDevelop",
+        async: false,
+        url: getRootPath_web() + "/ranking",
         data: {
-            "orderDate":orderDate,
+            "type": "develop",
             "areaName": areaName
         },
-        error : function(){
+        success: function (result) {
+            console.log(result);
+            //判断请求成功
+            if (result.code == 1) {
+                //清空子元素
+                var tbody=$("#user_rank");
+                tbody.innerHTML="";
+                //遍历集合，初始化排行列表
+                for (var i = 0; i < result.data.length; i++) {
+                    var tr=document.createElement("tr");
+                    var td=document.createElement("td");
+                    //设置序号
+                    var index=i+1;
+                    td.innerText=index+"";
+                    tr.appendChild(td);
+
+                    //设置名称
+                    td.innerText=result.data[i].areaName;
+                    tr.appendChild(td);
+
+                    //设置值
+                    td.innerText=result.data[i].totalAmount;
+                    tr.appendChild(td);
+
+                    tbody.appendChild(tr);
+                }
+            }
+        },
+        error: function () {
+            console.error("出现异常");
+        }
+    });
+}
+
+function initCountBusiness(orderDate, areaName) {
+    console.log(orderDate, areaName)
+    $.ajax({
+        type: 'post', //测试get，正式post
+        cache: false,
+        dataType: 'json',
+        //contentType: 'application/json;charset=UTF-8',
+        async: false,
+        url: getRootPath_web() + "/countUserDevelop",
+        data: {
+            "orderDate": orderDate,
+            "areaName": areaName
+        },
+        error: function () {
             console.error("出现异常");
         },
-        success : function(data){
+        success: function (data) {
             console.log(data);
             //console.log(data.devAmount)
             $("#countUser").html(data.devAmount);
@@ -39,67 +88,67 @@ function initCountBusiness (orderDate,areaName){
 }
 
 
-function initPie(){
-	var myChart = echarts.init(document.getElementById('pieGraph'));
-		pieoption = {
-	    title : {
-	        text: '6月份业务受理情况:',
-	        x:'10',
-            y:'10',
-	        textStyle: {
-              fontSize: 14,
-              fontWeight: 600,
-              color: '#000'
+function initPie() {
+    var myChart = echarts.init(document.getElementById('pieGraph'));
+    pieoption = {
+        title: {
+            text: '6月份业务受理情况:',
+            x: '10',
+            y: '10',
+            textStyle: {
+                fontSize: 14,
+                fontWeight: 600,
+                color: '#000'
             },
-	    },
-	    tooltip : {
-	        trigger: 'item',
-	        formatter: "{a} <br/>{b} : {c} ({d}%)",
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)",
 
-	    },
-	    series : [
-	        {
-	            name: '访问来源',
-	            type: 'pie',
-	            radius : '50%',
-	            center: ['50%', '55%'],
-	            data:[
-	                {value:33, name:'直接访问'},
-	                {value:310, name:'邮件营销'},
-	                {value:234, name:'联盟广告'},
-	                {value:135, name:'视频广告'},
-	                {value:1548, name:'搜索引擎'}
-	            ],
-	            itemStyle: {
-	                emphasis: {
-	                    shadowBlur: 10,
-	                    shadowOffsetX: 0,
-	                    shadowColor: 'rgba(0, 0, 0, 0.5)'
-	                }
-	            }
-	        }
-	    ]
-	}
-	 // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(pieoption,true);
-        window.addEventListener("resize",function(){
-			myChart.resize();
-       });
+        },
+        series: [
+            {
+                name: '访问来源',
+                type: 'pie',
+                radius: '50%',
+                center: ['50%', '55%'],
+                data: [
+                    {value: 33, name: '直接访问'},
+                    {value: 310, name: '邮件营销'},
+                    {value: 234, name: '联盟广告'},
+                    {value: 135, name: '视频广告'},
+                    {value: 1548, name: '搜索引擎'}
+                ],
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+    }
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(pieoption, true);
+    window.addEventListener("resize", function () {
+        myChart.resize();
+    });
 }
 
 function initcomparedInfo() {
-    var amount=[];
+    var amount = [];
     $.ajax({
-        type : 'get', //测试get，正式post
-        cache : false,
+        type: 'get', //测试get，正式post
+        cache: false,
         dataType: 'json',
         contentType: 'application/json;charset=UTF-8',
-        async:false,
-        url:getRootPath_web()+"/countOrderAmount",
-        error : function(){
+        async: false,
+        url: getRootPath_web() + "/countOrderAmount",
+        error: function () {
             console.error("出现异常");
         },
-        success : function(data){
+        success: function (data) {
             amount = data;
             console.log(data);
             //console.log(data.devAmount)
@@ -107,45 +156,43 @@ function initcomparedInfo() {
     });
 
     var myChart = echarts.init(document.getElementById('comparedInfo'));
-    var title = ['product', amount[1].month+'月', amount[1].last_month+'月'];
-    var content=[];
+    var title = ['product', amount[1].month + '月', amount[1].last_month + '月'];
+    var content = [];
     for (var i = 0; i < amount.length; i++) {
         var piece = [amount[i].product_name, amount[i].sum, amount[i].last_sum];
         content.push(piece);
     }
     myChart.setOption(
         {
-            title : {
+            title: {
                 text: '营业额同比交易量',
-                x:'center',
+                x: 'center',
                 textStyle: {
                     fontSize: 14,
                     fontWeight: 600,
                     color: '#000'
                 },
             },
-            color:["#91C7AE", "#2d91df"],
+            color: ["#91C7AE", "#2d91df"],
             legend: {
-                top:'20',
+                top: '20',
                 textStyle: {
                     fontSize: 13,
                     color: '#000'
                 }
             },
-            tooltip: {
-
-            },
-            grid:{
-                x:60,
-                y:60,
-                x2:60,
-                y2:50,
-                borderWidth:1
+            tooltip: {},
+            grid: {
+                x: 60,
+                y: 60,
+                x2: 60,
+                y2: 50,
+                borderWidth: 1
             },
             dataZoom: [
                 {   // 这个dataZoom组件，默认控制x轴。
                     type: 'slider', // 这个 dataZoom 组件是 slider 型 dataZoom 组件
-                    height:10,
+                    height: 10,
                     bottom: 20,
                     start: 0,      // 左边在 0% 的位置。
                     end: 15         // 右边在 10% 的位置。
@@ -161,20 +208,21 @@ function initcomparedInfo() {
                 dimensions: title,
                 source: content
             },
-            xAxis: {type: 'category',
-                axisLine:{
-                    lineStyle:{
-                        color:'#000',
+            xAxis: {
+                type: 'category',
+                axisLine: {
+                    lineStyle: {
+                        color: '#000',
                     }
                 }
             },
             yAxis: {
-                axisLine:{
-                    lineStyle:{
-                        color:'#000',
+                axisLine: {
+                    lineStyle: {
+                        color: '#000',
                     }
                 },
-                splitLine:{
+                splitLine: {
                     show: 'true',
                     lineStyle: {
                         color: '#cccccc',
@@ -190,12 +238,12 @@ function initcomparedInfo() {
         }
     );
 
-    window.addEventListener("resize",function(){
+    window.addEventListener("resize", function () {
         myChart.resize();
     });
-    myChart.on('click',function (param) {
+    myChart.on('click', function (param) {
         var index = param.dataIndex;
-        var startIndex = 100*index/amount.length;
+        var startIndex = 100 * index / amount.length;
         myChart.setOption({
             dataZoom: [
                 {   // 这个dataZoom组件，默认控制x轴。
@@ -216,9 +264,9 @@ function initcomparedInfo() {
 function inittendencyInfo() {
     var myChart = echarts.init(document.getElementById('tendencyInfo'));
     tendencyOption = {
-        title : {
+        title: {
             text: '用户发展量走势图',
-            x:'center',
+            x: 'center',
             textStyle: {
                 fontSize: 14,
                 fontWeight: 600,
@@ -226,23 +274,21 @@ function inittendencyInfo() {
             },
         },
         legend: {
-            bottom:'0',
+            bottom: '0',
         },
-        tooltip: {
-
-        },
-        grid:{
-            x:70,
-            y:60,
-            x2:40,
-            y2:50,
-            borderWidth:1
+        tooltip: {},
+        grid: {
+            x: 70,
+            y: 60,
+            x2: 40,
+            y2: 50,
+            borderWidth: 1
         },
         xAxis: {
             type: 'category',
-            axisLine:{
-                lineStyle:{
-                    color:'#000',
+            axisLine: {
+                lineStyle: {
+                    color: '#000',
                 }
             },
             boundaryGap: false,
@@ -250,12 +296,12 @@ function inittendencyInfo() {
         },
         yAxis: {
             type: 'value',
-            axisLine:{
-                lineStyle:{
-                    color:'#000',
+            axisLine: {
+                lineStyle: {
+                    color: '#000',
                 }
             },
-            splitLine:{
+            splitLine: {
                 show: 'true',
                 lineStyle: {
                     color: '#cccccc',
@@ -267,7 +313,7 @@ function inittendencyInfo() {
             type: 'line',
             itemStyle: {
                 normal: { //颜色渐变函数 前四个参数分别表示四个位置依次为左、下、右、上
-                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1,[{
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
                             offset: 0, color: '#c23531' // 0% 处的颜色
                         }, {
                             offset: 0.4, color: '#C24F45' // 100% 处的颜色
@@ -290,12 +336,12 @@ function inittendencyInfo() {
                     }
                 }
             },
-            symbolSize:2, //折线点的大小
+            symbolSize: 2, //折线点的大小
             areaStyle: {}
         }]
     };
-    myChart.setOption(tendencyOption,true);
-    window.addEventListener("resize",function(){
+    myChart.setOption(tendencyOption, true);
+    window.addEventListener("resize", function () {
         myChart.resize();
     });
 }

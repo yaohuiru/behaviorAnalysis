@@ -23,7 +23,7 @@
         <span class="position">北京</span>
         <span class="glyphicon glyphicon-off closed" aria-hidden="true" style="color:orangered"></span>
     </div>
-    <input id="userArea" type="hidden">
+    <input id="userArea" type="hidden" th:value="${session.LOGIN_USER.departmentId}">
     <script>
         /*获取到Url里面的参数*/
         function GetQueryString(name) {
@@ -97,7 +97,7 @@
                                     <th>用户数量</th>
                                 </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="user_rank">
                                 <tr class="" style="background-color: #91c7ae">
                                     <td>1</td>
                                     <td>忻州</td>
