@@ -8,8 +8,13 @@ $(function () {
     inittendencyInfo();
     initcomparedInfo();
     initUserRank();
+    $("#username").html(localStorage.getItem("userNum"));
+    $("#city").html(localStorage.getItem("city"));
 });
 
+$("#closed").click(function(){
+    window.location.href="/behavioranalysis/login.html";
+})
 
 //初始化用户发展排行信息
 function initUserRank() {
@@ -33,23 +38,53 @@ function initUserRank() {
                 var tbody=$("#user_rank");
                 tbody.innerHTML="";
                 //遍历集合，初始化排行列表
-                for (var i = 0; i < result.data.length; i++) {
-                    var tr=document.createElement("tr");
-                    var td=document.createElement("td");
-                    //设置序号
-                    var index=i+1;
-                    td.innerText=index+"";
-                    tr.appendChild(td);
-
-                    //设置名称
-                    td.innerText=result.data[i].areaName;
-                    tr.appendChild(td);
-
-                    //设置值
-                    td.innerText=result.data[i].totalAmount;
-                    tr.appendChild(td);
-
-                    tbody.appendChild(tr);
+                var len = 3;
+                if (result.data.length<3){
+                    len = result.data.length;
+                }
+                for (var i = 0; i < len; i++) {
+                    var j = i+1;
+                    tbody.append('<tr style="background-color: #d48265">> ' +
+                        '<td class="tdClass" >' + j+ '</td>' +
+                        '<td class="tdClass" >' + result.data[i].areaName + '</td>' +
+                        '<td class="tdClass" >' + result.data[i].totalAmount + '</td>' +
+                        '</tr>')
+                }
+            }
+        },
+        error: function () {
+            console.error("出现异常");
+        }
+    });
+    $.ajax({
+        type: 'post', //测试get，正式post
+        cache: false,
+        dataType: 'json',
+        async: false,
+        url: getRootPath_web() + "/ranking",
+        data: {
+            "type": "income",
+            "areaName": areaName
+        },
+        success: function (result) {
+            console.log(result);
+            //判断请求成功
+            if (result.code == 1) {
+                //清空子元素
+                var tbody=$("#income");
+                tbody.innerHTML="";
+                //遍历集合，初始化排行列表
+                var len = 3;
+                if (result.data.length<3){
+                    len = result.data.length;
+                }
+                for (var i = 0; i < len; i++) {
+                    var j = i+1;
+                    tbody.append('<tr style="background-color: #61a0a8">> ' +
+                        '<td class="tdClass" >' + j + '</td>' +
+                        '<td class="tdClass" >' + result.data[i].areaName + '</td>' +
+                        '<td class="tdClass" >' + result.data[i].totalIncome + '</td>' +
+                        '</tr>')
                 }
             }
         },
