@@ -10,12 +10,36 @@
     <link type="text/css" href="../css/font-awesome.css" rel="stylesheet" />
     <link type="text/css" href="../css/bootstrap.css" rel="stylesheet" />
     <link type="text/css" href="../css/custom-styles.css" rel="stylesheet" />
+    <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
 </head>
 <body>
     <!-- <div class="header" >
         
     </div> -->
-    <input id="userArea" type="hidden" th:value="${session.user.departmentId}">
+    <div class="header" >
+        <span class="welcome">欢迎登录:</span>
+        <span class="username" id="username"></span>
+        <span class="glyphicon glyphicon-map-marker"  aria-hidden="true" style="color: orangered"></span>
+        <span class="position" id="city"></span>
+        <span class="glyphicon glyphicon-off closed" aria-hidden="true" style="color:orangered" id="closed"></span>
+    </div>
+    <input id="userArea" type="hidden" th:value="${session.LOGIN_USER.departmentId}">
+    <script>
+        /*获取到Url里面的参数*/
+        function GetQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+
+            if(r != null) {
+                var r2 = decodeURI(r[2]);
+                 return r2;
+            }
+            return null;
+        }
+
+        var city = GetQueryString('city');
+        $("#userArea").val(city);
+    </script>
     <div class="content clearfix">
         <div class="content-left left clearfix">
             <div class="left-top border" id="pieGraph">
@@ -24,30 +48,30 @@
                 <div class="pieGraph" id="pieGraph"></div> -->
             </div>
             <div class="left-top border">
-                <div class="title" id="businessTitle">6月份业务发展统计</div>
+                <div class="title" id="businessTitle">6月份业务发展统计:</div>
                 <div class="countItem">
-                    <span id="countUser">123454</span><br>
+                    <span id="countUser">0</span><br>
                    <!-- <img src="../images/icon1.png">-->
                     <span class="spanitem">用户发展量</span>
                 </div>
                 <div class="countItem right">
-                    <span style="color: #e93c07" id="countOrder">5454</span><br>
+                    <span style="color: #e93c07" id="countOrder">0</span><br>
                     <span class="spanitem">套餐受理量</span>
                 </div>
                 <div class="countItem">
-                    <span style="color: #37c6c0" id="countAverage">434343</span><br>
+                    <span style="color: #37c6c0" id="countAverage">0</span><br>
                     <span class="spanitem">日均营业额</span>
                 </div>
                 <div class="countItem right">
-                    <span style="color: #1f6fb5" id="countTotal">23232323</span><br>
+                    <span style="color: #91c7ae" id="countTotal">0</span><br>
                     <span class="spanitem">总营业额</span>
                 </div>
 
             </div>
         </div>
         <div class="content-middle left clearfix">
-            <div class="middle-title border">
-                联通营业厅用户数据分析
+            <div class="middle-title">
+                业务发展大屏展示
             </div>
             <div class="middle-map border " id="map" >
                 
@@ -57,7 +81,7 @@
 
             <div class="left-top border">
 
-                <div class="panel panel-default">
+                <div class="panel-default">
 
                     <div class="panel-heading">
                         用户发展排名：
@@ -73,22 +97,22 @@
                                     <th>用户数量</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                <tr class="success">
+                                <tbody id="user_rank">
+                               <!-- <tr class="" style="background-color: #91c7ae">
                                     <td>1</td>
                                     <td>忻州</td>
                                     <td>222</td>
                                 </tr>
-                                <tr class="info">
+                                <tr class="" style="background-color: #d48265">
                                     <td>2</td>
                                     <td>忻州</td>
                                     <td>222</td>
                                 </tr>
-                                <tr class="warning">
+                                <tr class="" style="background-color: #61a0a8">
                                     <td>3</td>
                                     <td>忻州</td>
                                     <td>2222</td>
-                                </tr>
+                                </tr>-->
                                 </tbody>
                             </table>
                         </div>
@@ -97,13 +121,13 @@
             </div>
 
             <div class="left-top border">
-                <div class="panel panel-default">
+                <div class="panel-default">
                     <div class="panel-heading">
                         营业收入排名：
                     </div>
                     <div class="panel-body">
                         <div style="font-size:12px" class="table-responsive">
-                            <table class="table table-striped">
+                            <table class="table">
                                 <thead>
                                 <tr>
                                     <th>排名</th>
@@ -111,22 +135,22 @@
                                     <th>用户数量</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                <tr>
+                                <tbody id="income">
+                               <!-- <tr style="background-color: #91c7ae">
                                     <td>1</td>
                                     <td>忻州</td>
                                     <td>123456</td>
                                 </tr>
-                                <tr>
+                                <tr style="background-color: #2d91df">
                                     <td>2</td>
                                     <td>忻州</td>
                                     <td>123456</td>
                                 </tr>
-                                <tr>
+                                <tr style="background-color: #ffac73">
                                     <td>3</td>
                                     <td>忻州</td>
                                     <td>123456</td>
-                                </tr>
+                                </tr>-->
                                 </tbody>
                             </table>
                         </div>
@@ -148,5 +172,6 @@
     <script type="text/javascript" src="../js/plugins/map/citymap.js"></script>
     <script type="text/javascript" src="../js/plugins/map/app.js"></script>
     <script type="text/javascript" src="../js/index.js"></script>
+
 </body>
 </html>

@@ -43,5 +43,5 @@
       select area_name
       from t_area_info
       where parent_id = #{_parameter,jdbcType=VARCHAR}
-      </select>
+    </select>
 </mapper>

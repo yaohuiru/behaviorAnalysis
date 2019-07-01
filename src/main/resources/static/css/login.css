@@ -1,0 +1,24 @@
+body{
+    background: url("../images/bground.png") no-repeat;
+    background-size:80%;
+    position: relative;
+}
+.title {
+    width: 50%;
+    height: 150px;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 100px;
+    font-size: 50px;
+    font-family: "Microsoft YaHei";
+    text-shadow: 1px 1px 0 #4290f7, -1px -1px 0 #4290f7;
+}
+.title img{
+    width: 210px;
+    height: 150px;
+}
+.loginform {
+    position: absolute;
+    top: 250px;
+    right: 350px;
+}

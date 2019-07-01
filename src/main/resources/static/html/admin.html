@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>后台管理</title>
+
+    <script src="/behavioranalysis/webjars/jquery/3.0.0/jquery.js"></script>
+    <script src="/behavioranalysis/webjars/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="/behavioranalysis/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="/behavioranalysis/webjars/bootstrap-table/1.14.2/dist/bootstrap-table.js"></script>
+    <script src="/behavioranalysis/webjars/bootstrap-table/1.14.2/dist/locale/bootstrap-table-zh-CN.js"></script>
+
+    <!--<link rel="stylesheet" href="../css/bootstrap.css">-->
+    <link rel="stylesheet" href="/behavioranalysis/webjars/bootstrap/4.3.1/css/bootstrap.css">
+    <link rel="stylesheet" href="/behavioranalysis/webjars/bootstrap-table/1.14.2/dist/bootstrap-table.min.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row" style="margin: 20px 0">
+            <div class="col float-left"><p class="h1">后台管理</p></div>
+            <div class="col">
+                <button type="button" class="btn btn-outline-primary float-right" value="新增用户"  data-toggle="modal" data-target="#addModal">新增用户</button>
+            </div>
+        </div>
+        <table id="mytab"></table>
+    </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">编辑用户</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body" style="margin: 0 100px">
+                    <div class="form-group">
+                        <label class="control-label">员工昵称</label>
+                        <div>
+                            <input type="text" name="name" id="name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">员工姓名</label>
+                        <div>
+                            <input type="text" name="userName" id="userName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">员工邮箱</label>
+                        <div>
+                            <input type="text" name="userEmail" id="userEmail">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">员工部门</label>
+                        <select id="selectProv">
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">密码</label>
+                        <div>
+                            <input type="password" name="password" id="password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">权限</label>
+                        <div>
+                            <select id="state" name="state">
+                                <option value="2">系统管理员</option>
+                                <option value="1">普通用户</option>
+                            </select>
+                        </div>
+                    </div>
+                    <input type="hidden" name="userNum" id="userNum">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="submit" class="btn btn-primary" id="update">提交更改</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <div class="modal fade" id="addModal" tabindex="0" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="addModalLabel">新增用户</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body" style="margin: 0 100px">
+                    <div class="form-group">
+                        <label class="control-label">员工编号</label>
+                        <div>
+                            <input type="text" required="required" name="state" id="adduserNum">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">员工昵称</label>
+                        <div>
+                            <input type="text" required="required" name="name" id="addname">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">员工姓名</label>
+                        <div>
+                            <input type="text" required="required" name="userName" id="adduserName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">员工邮箱</label>
+                        <div>
+                            <input type="text" required="required"  name="userEmail" id="adduserEmail">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">员工部门</label>
+                        <select id="selectProv1" required="required" >
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">密码</label>
+                        <div>
+                            <input type="password" required="required"  name="password" id="addpassword">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">权限</label>
+                        <div>
+                            <select id="addstate" required="required" >
+                                <option value="2">系统管理员</option>
+                                <option value="1">普通用户</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="submit" class="btn btn-primary" id="add">新增</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+<script>
+    $('#mytab').bootstrapTable({
+        url: getRootPath_web() + "/user/selectall",
+        method: "post",
+        toolbar: "#toolbar",
+        sidePagination: "client",
+        striped: true, // 是否显示行间隔色
+        //search : "true",
+        uniqueId: "userNum",
+        pageSize: "10",
+        pageList: [10, 20, 50, 100],
+        pagination: true, // 是否分页
+        sortable: true, // 是否启用排序
+        columns: [{
+            field: 'userNum',
+            title: '员工编号'
+        },
+            {
+                field: 'userName',
+                title: '员工姓名'
+            },
+            {
+                field: 'name',
+                title: '员工昵称'
+            },
+            {
+                field: 'userEmail',
+                title: '员工邮箱'
+            },
+            {
+                field: 'departmentId',
+                title: '所在部门',
+
+            },
+            {
+                field: 'state',
+                title: '权限'
+            },
+            {
+                title: '操作',
+                width: 120,
+                align: 'center',
+                valign: 'middle',
+                formatter: actionFormatter
+            }
+        ]
+
+    });
+    //操作栏的格式化
+    function actionFormatter(value, row, params) {
+        var result = "";
+        /*result += "<a href='javascript:;' class='btn btn-xs blue' onclick=\"EditViewById('" + row.userNum + "')\" title='编辑'><span class='glyphicon glyphicon-pencil'></span></a>";*/
+        result += "<button class='btn btn-primary btn-sm' style='margin: 1px 1px' data-toggle='modal' data-target='#myModal'><a href='javascript:;' style='color: white; text-decoration-line: none' " +
+            "onclick=\"EditViewById('" + row.userNum+"','"+row.name+"','"+row.userName+"','"+row.userEmail+"','"+row.departmentId+"','"+row.password+"','"+row.state + "')\" title='修改'>修改</a></button>";
+        result += "<button class='btn btn-primary btn-sm' style='margin: 1px 1px'><a href='javascript:;' style='color: white; text-decoration-line: none' onclick=\"DeleteByIds('" + row.userNum + "')\" title='删除'>删除</a></button>";
+        return result;
+    }
+
+
+    function EditViewById(userNum,name,userName,userEmail,departmentId,password,state) {
+        $('#userNum').val(userNum);
+        $('#name').val(name);
+        $('#userName').val(userName);
+        $('#userEmail').val(userEmail);
+        $('#selectProv').val(departmentId);
+        $('#password').val(password);
+        $('#state').val(state);
+
+    }
+
+    window.onload=function(){
+        var provlist = [];
+        $.ajax({
+            async: false,
+            type:"GET",
+            contentType:"application/x-www-form-urlencoded",
+            url:"/behavioranalysis/user/getArea",
+            data:{
+            },
+            xhrFields:{withCredentials:true},
+            success:function(data){
+                provlist=data.data;
+
+            },
+            error:function(){
+                alert(data);
+            }
+        });
+
+        for (var i = 0; i < provlist.length; i++) {
+            /*$('#selectProv').innerHTML += "<option" +"id='"+provlist[i]["id"]+"'>"+provlist[i]["label"]+"</option>";*/
+            $('#selectProv').append("<option value='"+provlist[i].areaId+"'>"+provlist[i].areaName+"</option>");
+            $('#selectProv1').append("<option value='"+provlist[i].areaId+"'>"+provlist[i].areaName+"</option>");
+
+        }
+    };
+
+    function DeleteByIds(id) {
+        $.ajax({
+            type:"POST",
+            contentType:"application/x-www-form-urlencoded",
+            url:"/behavioranalysis/user/delete",
+            data:{
+                "userNum":id
+            },
+            xhrFields:{withCredentials:true},
+            success:function(data){
+                alert(data);
+                location.reload();
+            },
+            error:function(){
+                alert(data);
+            }
+        });
+    }
+
+    $('#update').on('click', function(){
+        var name = $("#name").val();
+        var userNum = $("#userNum").val();
+        var userName = $("#userName").val();
+        var userEmail = $("#userEmail").val();
+        var options=$("#selectProv option:selected");
+        var departmentId = options.val();
+        var password = $("#password").val();
+        var options1=$("#state option:selected");
+        var state = options1.val();
+        $.ajax({
+            type:"POST",
+            contentType:"application/json; charset=utf-8",
+            url:"/behavioranalysis/user/update",
+            data:JSON.stringify({
+                "name":name,
+                "userNum":userNum,
+                "userName":userName,
+                "userEmail":userEmail,
+                "departmentId":departmentId,
+                "state":state,
+                "password":password
+            }),
+            xhrFields:{withCredentials:true},
+            success:function(data){
+                if(data == "修改成功"){
+                    alert("修改成功");
+                    location.reload();
+                }else{
+                    alert("修改失败");
+                }
+
+            },
+            error:function(){
+                alert("修改失败，" + data.responseText);
+            },
+        });
+    });
+
+    $('#add').on('click', function(){
+        var name = $("#addname").val();
+        var userNum = $("#adduserNum").val();
+        var userName = $("#adduserName").val();
+        var userEmail = $("#adduserEmail").val();
+        var options=$("#selectProv1 option:selected");
+        var departmentId = options.val();
+        var password = $("#addpassword").val();
+        var options1=$("#addstate option:selected");
+        var state = options1.val();
+        $.ajax({
+            type:"POST",
+            contentType:"application/json; charset=utf-8",
+            url:"/behavioranalysis/user/insert",
+            data:JSON.stringify({
+                "name":name,
+                "userNum":userNum,
+                "userName":userName,
+                "userEmail":userEmail,
+                "departmentId":departmentId,
+                "state":state,
+                "password":password
+            }),
+            xhrFields:{withCredentials:true},
+            success:function(data){
+                if(data == "新增成功"){
+                    alert("新增成功");
+                    location.reload();
+                }else{
+                    alert(data);
+                }
+            },
+            error:function(){
+                alert("新增失败，" + data.responseText);
+            },
+        });
+    });
+
+    function getRootPath_web() {
+        //获取当前网址，如： http://localhost:8083/uimcardprj/share/meun.jsp
+        var curWwwPath = window.document.location.href;
+        //获取主机地址之后的目录，如： uimcardprj/share/meun.jsp
+        var pathName = window.document.location.pathname;
+        var pos = curWwwPath.indexOf(pathName);
+        //获取主机地址，如： http://localhost:8083
+        var localhostPaht = curWwwPath.substring(0, pos);
+        //获取带"/"的项目名，如：/uimcardprj
+        var projectName = pathName.substring(0, pathName.substr(1).indexOf('/') + 1);
+        return (localhostPaht + projectName);
+    }
+</script>
+</body>
+
+</html>

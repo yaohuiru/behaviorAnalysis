@@ -5,8 +5,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
@@ -21,13 +23,21 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     LoginInterceptor loginInterceptor;
     private Logger log=LoggerFactory.getLogger(WebConfig.class);
     //不拦截资源路径
-    final String[] notLoginInterceptPaths={"/**"};
+    final String[] notLoginInterceptPaths={"/*", "/css/*", "/js/*", "/images/*", "/user/login"};
+    /*final String[] notLoginInterceptPaths={"/**"};*/
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         //登录拦截器注册
        registry.addInterceptor(loginInterceptor).addPathPatterns("/**").excludePathPatterns(notLoginInterceptPaths);
        super.addInterceptors(registry);
+    }
+
+    @Override
+    public void addViewControllers( ViewControllerRegistry registry ) {
+        registry.addViewController( "/" ).setViewName( "forward:/login.html" );
+        registry.setOrder( Ordered.HIGHEST_PRECEDENCE );
+        super.addViewControllers( registry );
     }
 
     @Override

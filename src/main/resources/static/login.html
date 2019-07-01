@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户登录</title>
+    <!-- <link rel="stylesheet" href="../webjars/bootstrap/4.3.1/css/bootstrap.css"> -->
+    <link rel="stylesheet" type="text/css" href="/behavioranalysis/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/behavioranalysis/css/login.css">
+    <link type="text/css" href="/behavioranalysis/css/bootstrap.css" rel="stylesheet" />
+    <script type="text/javascript" src="/behavioranalysis/js/jquery-1.9.1.min.js"></script>
+	<!--<script>
+		function login(){
+			window.open("index.html", "_blank");
+		}
+	</script>-->
+	
+		
+</head>
+	<body>
+    <div class="title">
+        <img src="images/logo.png">
+        业务发展大屏展示系统
+    </div>
+		<!-- 登录表单 -->
+      <div class="loginform">
+              <div class="form-group">
+                  <label for="userNum" style="display:inline;">账户：</label>
+                  <input type="text" required="required" class="form-control" name="userNum" id="userNum" style="display:inline;width:220px;height: 40px" autocomplete="off" />
+              </div>
+              <div class="form-group" style="margin: 20px 0px;">
+                  <label for="password" style="display:inline;">密码：</label>
+                  <input type="password" required="required" class="form-control" name="password" id="password" style="display:inline;width:220px;height: 40px"autocomplete="off" />
+              </div>
+              <div class="form-actions">
+                  <button type="submit" class="btn btn-primary" style="width: 267px;height: 40px" id="login">登录</button>
+              </div>
+      </div>
+	</body>
+
+    <script>
+        jQuery(document).ready(function(){
+            $("#login").on("click", function(){
+                var userNum = $("#userNum").val();
+                var password = $("#password").val();
+                if(userNum == null || userNum == "") {alert("用户编号不能为空"); return false;}
+                if(password == null || password == "") {alert("密码不能为空"); return false;}
+                $.ajax({
+                    type:"POST",
+                    contentType:"application/x-www-form-urlencoded",
+                    url:"/behavioranalysis/user/login",
+                    data:{
+                        "userNum":userNum,
+                        "password":password
+                    },
+                    xhrFields:{withCredentials:true},
+                    success:function(data){
+                        console.log(data)
+                        if(data.code == 1){
+                            alert("登陆成功");
+                            if(data.data.state==2) {
+                                window.location.href="/behavioranalysis/html/admin.html";
+                            }else if(data.data.state==1) {
+                                window.location.href="/behavioranalysis/html/index.html?city=" + data.data.departmentId;
+                                localStorage.setItem("userNum",data.data.userNum);
+                                localStorage.setItem("city",data.data.departmentId);
+                            }
+                        }else{
+                            alert("登陆失败，" + data.data);
+                            window.location.href="/behavioranalysis/login.html";
+                        }
+                    },
+                    error:function(){
+                        alert("登陆失败，" + data.responseText);
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+</html>

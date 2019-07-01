@@ -111,7 +111,8 @@ chart.on('click', function (params) {
     } else if (params.seriesName in provinces) {
         //如果是【直辖市/特别行政区】只有二级下钻
         if (special.indexOf(params.seriesName) >= 0) {
-            renderMap('china', mapdata);
+            //返回顶级
+            initMap();
         } else {
             //显示县级地图
             $.getJSON('../map/city/' + cityMap[params.name] + '.json', function (data) {
@@ -127,6 +128,7 @@ chart.on('click', function (params) {
     } else {
         //返回顶级
         initMap();
+        initCountBusiness(orderDate, userArea);
     }
 });
 
@@ -134,12 +136,12 @@ chart.on('click', function (params) {
 var option = {
     backgroundColor: '#fff',
     title: {
-        text: '中国地图',
+        /*text: '中国地图',*/
         subtext: '省市区三级下钻',
         //link:'http://www.ldsun.com',
         left: 'center',
         textStyle: {
-            color: '#00cccc',
+            color: '#91c7ae',
             fontSize: 16,
             fontWeight: 'normal',
             fontFamily: "Microsoft YaHei"
@@ -193,7 +195,7 @@ function renderMap(map, data) {
                     show: true,
                     //区域名称字体设置
                     textStyle: {
-                        color: '#999',
+                        color: '#fff',
                         fontSize: 10
                     }
                 },
@@ -207,11 +209,11 @@ function renderMap(map, data) {
             },
             itemStyle: {
                 normal: {
-                    areaColor: 'yellow',
-                    borderColor: 'dodgerblue'
+                    areaColor: '#ffa640',
+                    borderColor: '#86280e'
                 },
                 emphasis: {
-                    areaColor: 'darkorange'
+                    areaColor: '#FF8900'
                 }
             },
             data: data
